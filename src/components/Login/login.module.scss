@@ -1,0 +1,82 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f5f6f8;
+
+  .card {
+    width: 100%;
+    max-width: 460px;
+    padding: 2rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    .header {
+      margin-bottom: 2rem;
+      text-align: center;
+
+      h1 {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+      }
+
+      p {
+        color: #6b7280;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        input {
+          width: 100%;
+          padding: 0.8rem 0.9rem;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+          outline: none;
+          transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+          border-color: black;
+        }
+
+        .error {
+          color: #dc2626;
+          font-size: 0.8rem;
+        }
+      }
+
+      .submitButton {
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        background-color: black;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+
+      .submitButton:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
