@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { authActions } from "../../redux/slices/authSlice";
+import { Link } from "react-router-dom";
 
 interface LoginFormData {
   email: string;
@@ -88,6 +89,10 @@ const Login = () => {
             Login
           </button>
         </form>
+
+        <p className={styles.footer}>
+          Don’t have an account? <Link to="/register">Register</Link>
+        </p>
       </div>
     </div>
   );

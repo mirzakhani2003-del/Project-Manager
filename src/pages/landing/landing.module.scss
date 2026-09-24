@@ -1,0 +1,267 @@
+.landing {
+  min-height: 100vh;
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+.logo {
+  color: #1a1a1a;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.dashboardButton {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background-color: #111;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.logoutButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dashboardButton:hover {
+  opacity: 0.85;
+}
+
+.logoutButton:hover {
+  background-color: #f5f5f5;
+}
+
+.loginLink {
+  color: #444;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.registerButton,
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.registerButton {
+  padding: 0.65rem 1rem;
+  background-color: #111;
+  color: #fff;
+}
+
+.registerButton:hover,
+.primaryButton:hover {
+  opacity: 0.85;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 2rem 6rem;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background-color: #f1f1f1;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.hero h1 span {
+  color: #666;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 1.5rem auto 0;
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primaryButton {
+  padding: 0.85rem 1.25rem;
+  background-color: #111;
+  color: #fff;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.features {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.sectionHeader {
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.sectionHeader p {
+  margin-top: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.featureCard {
+  padding: 2rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.featureCard svg {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+  margin: 0 0 0.75rem;
+}
+
+.featureCard p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.cta {
+  margin: 3rem auto 0;
+  padding: 5rem 2rem;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.cta h2 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.cta p {
+  margin: 1rem 0 2rem;
+  color: #666;
+}
+
+.footer {
+  padding: 2rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 5rem 1.5rem;
+  }
+
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginLink {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}

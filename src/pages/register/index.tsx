@@ -9,6 +9,7 @@ import { userActions } from "../../redux/slices/userSlice";
 import type { Team } from "../../types/team";
 import { teamsActions } from "../../redux/slices/teamSlice";
 import { authActions } from "../../redux/slices/authSlice";
+import { Link } from "react-router-dom";
 
 const registerSchema = yup.object({
   name: yup
@@ -148,6 +149,10 @@ const Register = () => {
             Register
           </button>
         </form>
+
+        <p className={styles.footer}>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );

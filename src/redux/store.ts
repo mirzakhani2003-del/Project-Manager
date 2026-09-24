@@ -26,6 +26,10 @@ store.subscribe(() => {
   if (state.auth.currentUser) {
     storage.setCurrentUser(state.auth.currentUser);
   }
+
+  if (!state.auth.currentUser) {
+    storage.removeCurrentUser();
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

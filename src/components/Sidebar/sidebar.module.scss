@@ -1,0 +1,56 @@
+.sideBar {
+  width: 240px;
+  min-height: 100vh;
+  padding: 1.5rem;
+  border-right: 1px solid #ddd;
+
+  .logo {
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 2rem;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .link,
+    .activeLink {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .link {
+      color: #555;
+    }
+
+    .activeLink {
+      color: #000;
+      background-color: #eee;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .sideBar {
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .sideBar.open {
+    transform: translateX(0);
+  }
+}

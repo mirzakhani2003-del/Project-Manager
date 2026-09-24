@@ -29,4 +29,7 @@ export const storage = {
   setCurrentUser: (currentUser: User) => {
     localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(currentUser));
   },
+  removeCurrentUser: () => {
+    localStorage.removeItem(STORAGE_KEYS.currentUser);
+  },
 };
