@@ -20,6 +20,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.currentUser = null;
     },
+    setCurrentUser: (state, action: PayloadAction<User>) => {
+      state.currentUser = action.payload;
+    },
   },
 });
 

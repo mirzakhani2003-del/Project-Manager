@@ -1,0 +1,48 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    .title {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #64748b;
+    }
+  }
+
+  .sectionContainer {
+    display: flex;
+    gap: 1.5rem;
+
+    .section {
+      width: 100%;
+      height: max-content;
+      padding: 1.5rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+    }
+
+    .sectionTitle {
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .sectionContainer {
+    flex-direction: column;
+  }
+}

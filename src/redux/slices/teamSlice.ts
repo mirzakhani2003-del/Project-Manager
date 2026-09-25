@@ -3,7 +3,7 @@ import type { Team } from "../../types/team";
 import { storage } from "../../utils/storage";
 
 interface TeamState {
-  teams: Team[] | null;
+  teams: Team[];
 }
 
 const initialState: TeamState = {
@@ -15,7 +15,7 @@ const teamSlice = createSlice({
   initialState,
   reducers: {
     addTeam: (state, action: PayloadAction<Team>) => {
-      state.teams?.push(action.payload);
+      state.teams.push(action.payload);
     },
   },
 });

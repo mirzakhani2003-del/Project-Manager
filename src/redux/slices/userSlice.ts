@@ -3,7 +3,7 @@ import type { User } from "../../types/user";
 import { storage } from "../../utils/storage";
 
 interface UserState {
-  users: User[] | null;
+  users: User[];
 }
 
 const initialState: UserState = {
@@ -15,11 +15,18 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<User>) => {
-      state.users?.push(action.payload);
+      state.users.push(action.payload);
     },
     deleteUser: (state, action: PayloadAction<string>) => {
-      if (state.users) {
-        state.users = state.users.filter((user) => user.id !== action.payload);
+      state.users = state.users.filter((user) => user.id !== action.payload);
+    },
+    updateUser: (state, action: PayloadAction<User>) => {
+      const index = state.users.findIndex(
+        (user) => user.id === action.payload.id,
+      );
+
+      if (index !== -1) {
+        state.users[index] = action.payload;
       }
     },
   },
