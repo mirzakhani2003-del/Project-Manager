@@ -63,6 +63,14 @@
         }
       }
 
+      .formError {
+        padding: 0.75rem;
+        border-radius: 8px;
+        background-color: #fef2f2;
+        color: #dc2626;
+        font-size: 0.9rem;
+      }
+
       .submitButton {
         padding: 0.8rem;
         border: none;

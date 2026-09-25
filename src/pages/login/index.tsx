@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { authActions } from "../../redux/slices/authSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface LoginFormData {
   email: string;
@@ -22,6 +22,7 @@ const loginSchema = yup.object({
 const Login = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.users);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -50,6 +51,7 @@ const Login = () => {
     try {
       const user = loginUser(data);
       dispatch(authActions.login(user));
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof Error) {
         setError("root", {
@@ -84,6 +86,10 @@ const Login = () => {
               <p className={styles.error}>{errors.password.message}</p>
             )}
           </div>
+
+          {errors.root && (
+            <p className={styles.formError}>{errors.root.message}</p>
+          )}
 
           <button className={styles.submitButton} type="submit">
             Login

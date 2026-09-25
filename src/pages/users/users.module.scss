@@ -1,0 +1,56 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: #64748b;
+    }
+  }
+
+  .content {
+    display: flex;
+    gap: 1.5rem;
+
+    .formSection, .listSection {
+      padding: 1.5rem;
+      background-color: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.7rem;
+      height: max-content;
+
+      .sectionTitle {
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+    }
+
+    .formSection {
+      width: 30%;
+    }
+
+    .listSection {
+        width: 70%;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+
+    .formSection, .listSection {
+      width: 100% !important;
+    }
+  }
+}

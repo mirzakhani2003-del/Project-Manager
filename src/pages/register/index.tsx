@@ -9,7 +9,7 @@ import { userActions } from "../../redux/slices/userSlice";
 import type { Team } from "../../types/team";
 import { teamsActions } from "../../redux/slices/teamSlice";
 import { authActions } from "../../redux/slices/authSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const registerSchema = yup.object({
   name: yup
@@ -40,6 +40,7 @@ interface RegisterFormData {
 const Register = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.users);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -90,6 +91,7 @@ const Register = () => {
       dispatch(userActions.addUser(newUser));
       dispatch(teamsActions.addTeam(newTeam));
       dispatch(authActions.login(newUser));
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof Error) {
         setError("email", {
