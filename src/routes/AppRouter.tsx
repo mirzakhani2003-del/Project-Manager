@@ -9,6 +9,7 @@ import Projects from "../pages/projects";
 import Tasks from "../pages/tasks";
 import Users from "../pages/users";
 import Profile from "../pages/profile";
+import ProjectDetails from "../pages/projectDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
           {
             path: "projects",
             element: <Projects />,
+          },
+          {
+            path: "projects/:projectId",
+            element: <ProjectDetails />,
           },
           {
             path: "tasks",

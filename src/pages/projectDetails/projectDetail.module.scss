@@ -1,0 +1,88 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .backLink {
+    width: fit-content;
+    color: #475569;
+    text-decoration: none;
+  }
+
+  .backLink:hover {
+    color: #0f172a;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+  }
+
+  .section {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.7rem;
+    background-color: white;
+
+    .sectionTitle {
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .description {
+      line-height: 1.7;
+      color: #475569;
+    }
+  }
+
+  .action {
+    display: flex;
+    gap: 1rem;
+
+    .edit,
+    .delete {
+      padding: 0.5rem 1rem;
+      border: 1px solid;
+      border-radius: 0.4rem;
+      border-radius: 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        bacground-color 0.2s ease;
+    }
+
+    .edit {
+      border-color: #fed8b0;
+      background: #fefaf2;
+    }
+
+    .edit:hover {
+      transform: translateY(1px);
+      background-color: #c6b928;
+    }
+
+    .delete {
+      border-color: #fecaca;
+      background: #fef2f2;
+    }
+
+    .delete:hover {
+      transform: translateY(1px);
+      background-color: #c62828;
+    }
+  }
+}

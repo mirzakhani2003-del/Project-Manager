@@ -1,0 +1,29 @@
+.overlay {
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-self: center;
+  justify-content: center;
+
+  .modal {
+    background-color: white;
+    margin: auto;
+    padding: 24px;
+    border-radius: 0.7rem;
+    width: 800px;
+    height: max-content;
+
+    .closeBtn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #fecaca;
+      border-radius: 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fef2f2;
+      margin-bottom: 10px;
+    }
+  }
+}

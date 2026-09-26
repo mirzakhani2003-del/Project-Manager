@@ -1,3 +1,4 @@
+import type { Project } from "../types/project";
 import type { Team } from "../types/team";
 import type { User } from "../types/user";
 
@@ -5,6 +6,7 @@ const STORAGE_KEYS = {
   users: "task-manager-users",
   teams: "task-manager-teams",
   currentUser: "task-manager-current-user",
+  projects: "task-manager-projects",
 } as const;
 
 export const storage = {
@@ -31,5 +33,12 @@ export const storage = {
   },
   removeCurrentUser: () => {
     localStorage.removeItem(STORAGE_KEYS.currentUser);
+  },
+  getProjects: (): Project[] => {
+    const projects = localStorage.getItem(STORAGE_KEYS.projects);
+    return projects ? JSON.parse(projects) : [];
+  },
+  setProjects: (projects: Project[]) => {
+    localStorage.setItem(STORAGE_KEYS.projects, JSON.stringify(projects));
   },
 };

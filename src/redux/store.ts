@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import usersReducer from "./slices/userSlice";
 import teamsReducer from "./slices/teamSlice";
 import authReducer from "./slices/authSlice";
+import projectReducer from "./slices/projectSlice";
 import { storage } from "../utils/storage";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     users: usersReducer,
     teams: teamsReducer,
     auth: authReducer,
+    projects: projectReducer,
   },
 });
 
@@ -29,6 +31,10 @@ store.subscribe(() => {
 
   if (!state.auth.currentUser) {
     storage.removeCurrentUser();
+  }
+
+  if (state.projects.projects) {
+    storage.setProjects(state.projects.projects);
   }
 });
 
