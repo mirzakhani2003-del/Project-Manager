@@ -76,7 +76,7 @@ const ProjectForm = ({ initialData, projectId }: ProjectFormProps) => {
     currentUser: User,
   ) => {
     if (currentUser.role !== "manager") {
-      throw new Error("Only managers can create projects.");
+      throw new Error("Only managers can Edit projects.");
     }
 
     const project = projects.find((project) => project.id === projectId);

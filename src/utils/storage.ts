@@ -1,4 +1,5 @@
 import type { Project } from "../types/project";
+import type { Task } from "../types/task";
 import type { Team } from "../types/team";
 import type { User } from "../types/user";
 
@@ -7,6 +8,7 @@ const STORAGE_KEYS = {
   teams: "task-manager-teams",
   currentUser: "task-manager-current-user",
   projects: "task-manager-projects",
+  tasks: "task-manager-tasks",
 } as const;
 
 export const storage = {
@@ -40,5 +42,12 @@ export const storage = {
   },
   setProjects: (projects: Project[]) => {
     localStorage.setItem(STORAGE_KEYS.projects, JSON.stringify(projects));
+  },
+  getTasks: (): Task[] => {
+    const tasks = localStorage.getItem(STORAGE_KEYS.tasks);
+    return tasks ? JSON.parse(tasks) : [];
+  },
+  setTasks: (tasks: Task[]) => {
+    localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(tasks));
   },
 };

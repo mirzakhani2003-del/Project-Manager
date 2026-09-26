@@ -1,0 +1,142 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.7rem;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-weight: 600;
+      margin-bottom: 1rem;
+
+      span {
+        display: inline-block;
+        border: 1px solid;
+        padding: 0.3rem;
+        font-size: 0.7rem;
+        border-radius: 0.7rem;
+        text-align: center;
+        border-color: #ffc6af;
+      }
+    }
+
+    .description {
+      color: #475569;
+      margin-bottom: 1rem;
+    }
+
+    .action {
+      display: flex;
+      gap: 1rem;
+
+      .edit,
+      .delete {
+        padding: 0.5rem 1rem;
+        border: 1px solid;
+        border-radius: 0.4rem;
+        border-radius: 0.7rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          bacground-color 0.2s ease;
+      }
+
+      .edit {
+        border-color: #fed8b0;
+        background: #fefaf2;
+      }
+
+      .edit:hover {
+        transform: translateY(1px);
+        background-color: #c6b928;
+      }
+
+      .delete {
+        border-color: #fecaca;
+        background: #fef2f2;
+      }
+
+      .delete:hover {
+        transform: translateY(1px);
+        background-color: #c62828;
+      }
+    }
+  }
+
+  .details {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0.5rem;
+
+    select {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      color: #0f172a;
+      background-color: white;
+      outline: none;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    select:hover {
+      border-color: #64748b;
+      box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+    }
+
+    .dueDate {
+      display: inline-block;
+      border: 1px solid;
+      padding: 0.3rem;
+      font-size: 0.7rem;
+      border-radius: 0.7rem;
+      text-align: center;
+      border-color: #8dfe79;
+    }
+
+    .status,
+    .createdAt {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .assignedTo {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    flex-direction: column;
+
+    .header {
+      width: 100%;
+    }
+
+    .details {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

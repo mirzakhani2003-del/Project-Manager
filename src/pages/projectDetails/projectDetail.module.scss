@@ -29,7 +29,7 @@
     }
   }
 
-  .section {
+  .section, .tasks {
     padding: 1.5rem;
     border: 1px solid #e2e8f0;
     border-radius: 0.7rem;
@@ -52,7 +52,8 @@
     gap: 1rem;
 
     .edit,
-    .delete {
+    .delete,
+    .addTask {
       padding: 0.5rem 1rem;
       border: 1px solid;
       border-radius: 0.4rem;
@@ -83,6 +84,16 @@
     .delete:hover {
       transform: translateY(1px);
       background-color: #c62828;
+    }
+
+    .addTask {
+      border-color: #cdfeca;
+      background: #86ff90;
+    }
+
+    .addTask:hover {
+      transform: translateY(1px);
+      background-color: #28c630;
     }
   }
 }

@@ -6,31 +6,31 @@ import { projectAction } from "../../redux/slices/projectSlice";
 import { useState } from "react";
 import Modal from "../../components/Modal";
 import ProjectForm from "../../components/ProjectForm";
+import TaskForm from "../../components/TaskForm";
+import TaskList from "../../components/TaskList";
+import type { Status, Task } from "../../types/task";
+import { taskAction } from "../../redux/slices/taskSlice";
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const currentUser = useAppSelector((state) => state.auth.currentUser);
   const projects = useAppSelector((state) => state.projects.projects);
+  const tasks = useAppSelector((state) => state.tasks.tasks);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [projectFormModal, setProjectFormModal] = useState(false);
+  const [taskFormModal, setTaskFormModal] = useState(false);
 
   const project = projects.find((project) => project.id === projectId);
+
+  const projectTasks = tasks.filter((task) => task.projectId === projectId);
 
   if (!project) {
     return;
   }
 
   const handleDelete = () => {
-    if (!currentUser) {
-      return;
-    }
-
-    if (currentUser.role !== "manager") {
-      throw new Error("Only managers can delete projects.");
-    }
-
     const confirmed = window.confirm(
       `Are you sure you want to delete "${project.title}"?`,
     );
@@ -41,6 +41,15 @@ const ProjectDetails = () => {
 
     dispatch(projectAction.deleteProject(project.id));
     navigate("/projects");
+  };
+
+  const handleStatusChange = (task: Task, status: Status) => {
+    const updatedTask: Task = {
+      ...task,
+      status: status,
+    };
+
+    dispatch(taskAction.updateTask(updatedTask));
   };
 
   return (
@@ -66,21 +75,43 @@ const ProjectDetails = () => {
           <>
             <button
               className={styles.edit}
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => setProjectFormModal(true)}
             >
               Edit
             </button>
             <button className={styles.delete} onClick={handleDelete}>
               Delete
             </button>
+            <button
+              className={styles.addTask}
+              onClick={() => setTaskFormModal(true)}
+            >
+              Add Task
+            </button>
 
-            {isModalOpen && (
-              <Modal onClose={() => setIsModalOpen(false)}>
+            {projectFormModal && (
+              <Modal onClose={() => setProjectFormModal(false)}>
                 <ProjectForm projectId={projectId} initialData={project} />
+              </Modal>
+            )}
+
+            {taskFormModal && (
+              <Modal onClose={() => setTaskFormModal(false)}>
+                <TaskForm projectId={projectId} />
               </Modal>
             )}
           </>
         )}
+      </section>
+
+      <section className={styles.tasks}>
+        <h3 className={styles.sectionTitle}>Tasks</h3>
+
+        <TaskList
+          projectId={projectId}
+          tasks={projectTasks}
+          handleStatusChange={handleStatusChange}
+        />
       </section>
     </div>
   );

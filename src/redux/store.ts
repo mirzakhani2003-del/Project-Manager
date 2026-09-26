@@ -3,6 +3,7 @@ import usersReducer from "./slices/userSlice";
 import teamsReducer from "./slices/teamSlice";
 import authReducer from "./slices/authSlice";
 import projectReducer from "./slices/projectSlice";
+import taskReducer from "./slices/taskSlice";
 import { storage } from "../utils/storage";
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     teams: teamsReducer,
     auth: authReducer,
     projects: projectReducer,
+    tasks: taskReducer,
   },
 });
 
@@ -35,6 +37,10 @@ store.subscribe(() => {
 
   if (state.projects.projects) {
     storage.setProjects(state.projects.projects);
+  }
+
+  if (state.tasks.tasks) {
+    storage.setTasks(state.tasks.tasks);
   }
 });
 
