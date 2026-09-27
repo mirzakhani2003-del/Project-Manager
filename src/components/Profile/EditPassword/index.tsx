@@ -3,10 +3,10 @@ import styles from "./editPassword.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../redux/hooks";
-import type { User } from "../../types/user";
-import { userActions } from "../../redux/slices/userSlice";
-import { authActions } from "../../redux/slices/authSlice";
+import { useAppSelector } from "../../../redux/hooks";
+import type { User } from "../../../types/user";
+import { userActions } from "../../../redux/slices/userSlice";
+import { authActions } from "../../../redux/slices/authSlice";
 
 interface ChangePasswordFormData {
   currentPassword: string;
@@ -40,6 +40,10 @@ const EditPassword = () => {
     resolver: yupResolver(changePasswordSchema),
   });
 
+  if (!currentUser) {
+    return;
+  }
+
   const changePassword = (data: ChangePasswordFormData, currentUser: User) => {
     if (data.currentPassword !== currentUser.password) {
       throw new Error("Current password is incorrect.");
@@ -54,10 +58,6 @@ const EditPassword = () => {
   };
 
   const onSubmit = (data: ChangePasswordFormData) => {
-    if (!currentUser) {
-      return;
-    }
-
     try {
       const updatedUser = changePassword(data, currentUser);
       dispatch(userActions.updateUser(updatedUser));

@@ -20,6 +20,7 @@
 
   .content {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 
     .formSection, .listSection {
@@ -33,14 +34,6 @@
         margin-bottom: 1rem;
         font-weight: 800;
       }
-    }
-
-    .formSection {
-      width: 30%;
-    }
-
-    .listSection {
-        width: 70%;
     }
   }
 }

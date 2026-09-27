@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import styles from "./addMemberForm.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import type { User } from "../../types/user";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import type { User } from "../../../types/user";
 import { v4 as uuid } from "uuid";
-import { userActions } from "../../redux/slices/userSlice";
+import { userActions } from "../../../redux/slices/userSlice";
 
 interface AddMemberFromData {
   name: string;
@@ -43,14 +43,18 @@ const AddMemberFrom = () => {
     resolver: yupResolver(addMemberFormSchema),
   });
 
+  if (!currentUser) {
+    return;
+  }
+
   const addMember = (data: AddMemberFromData): User => {
-    if (currentUser?.role !== "manager") {
+    if (currentUser.role !== "manager") {
       throw new Error("Only managers can add team members.");
     }
 
-    const existingUser = users?.find(
+    const existingUser = users.find(
       (user) =>
-        user.email.toLocaleLowerCase() === data.email.toLocaleLowerCase(),
+        user.email.toLowerCase() === data.email.toLowerCase(),
     );
 
     if (existingUser) {
@@ -60,7 +64,7 @@ const AddMemberFrom = () => {
     const newMember: User = {
       id: uuid(),
       name: data.name,
-      email: data.email.toLocaleLowerCase(),
+      email: data.email.toLowerCase(),
       password: data.password,
       role: "member",
       teamId: currentUser.teamId,

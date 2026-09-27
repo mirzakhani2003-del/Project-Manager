@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import type { Project } from "../../types/project";
+import type { Project } from "../../../types/project";
 import styles from "./projectCard.module.scss";
 import { useNavigate } from "react-router-dom";
 

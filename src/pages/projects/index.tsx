@@ -1,10 +1,14 @@
-import ProjectForm from "../../components/ProjectForm";
-import ProjectList from "../../components/ProjectList";
+import ProjectForm from "../../components/Project/ProjectForm";
+import ProjectList from "../../components/Project/ProjectList";
 import { useAppSelector } from "../../redux/hooks";
 import styles from "./project.module.scss";
 
 const Projects = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+  if (!currentUser) {
+    return;
+  }
 
   return (
     <div className={styles.page}>
@@ -17,7 +21,7 @@ const Projects = () => {
       </header>
 
       <div className={styles.content}>
-        {currentUser?.role === "manager" && (
+        {currentUser.role === "manager" && (
           <section className={styles.section}>
             <h2>Create Project</h2>
             <ProjectForm />
@@ -25,9 +29,9 @@ const Projects = () => {
         )}
 
         <section className={styles.section}>
-            <h2>Projects on your team</h2>
-            <ProjectList />
-          </section>
+          <h2>Projects on your team</h2>
+          <ProjectList />
+        </section>
       </div>
     </div>
   );

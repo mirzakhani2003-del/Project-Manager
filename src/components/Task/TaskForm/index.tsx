@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import type { Priority, Status, Task } from "../../types/task";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import type { Priority, Status, Task } from "../../../types/task";
 import * as yup from "yup";
 import styles from "./taskForm.module.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { User } from "../../types/user";
+import type { User } from "../../../types/user";
 import { v4 as uuid } from "uuid";
-import { taskAction } from "../../redux/slices/taskSlice";
+import { taskAction } from "../../../redux/slices/taskSlice";
 import { useEffect, useState } from "react";
 
 interface TaskFormData {
@@ -40,7 +40,7 @@ const taskSchema = yup.object({
 });
 
 interface TaskFormProps {
-  projectId?: string;
+  projectId: string;
   initialData?: TaskFormData;
   taskId?: string;
 }
@@ -50,7 +50,6 @@ const TaskForm = ({ projectId, initialData, taskId }: TaskFormProps) => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
   const users = useAppSelector((state) => state.users.users);
   const tasks = useAppSelector((state) => state.tasks.tasks);
-  const teamUsers = users.filter((user) => user.teamId === currentUser?.teamId);
 
   const [editingMode, setEditingMode] = useState(false);
 
@@ -71,13 +70,15 @@ const TaskForm = ({ projectId, initialData, taskId }: TaskFormProps) => {
     }
   }, [initialData, reset]);
 
+  if (!currentUser) {
+    return;
+  }
+
+  const teamUsers = users.filter((user) => user.teamId === currentUser.teamId);
+
   const createTask = (data: TaskFormData, currentUser: User) => {
     if (currentUser.role !== "manager") {
       throw new Error("Only managers can create tasks.");
-    }
-
-    if (!projectId) {
-      throw new Error("Please select a project to add task !");
     }
 
     const newTask: Task = {
@@ -125,10 +126,6 @@ const TaskForm = ({ projectId, initialData, taskId }: TaskFormProps) => {
 
   const onSubmit = (data: TaskFormData) => {
     try {
-      if (!currentUser) {
-        return;
-      }
-
       if (editingMode && taskId) {
         const updatedTask = updateTask(taskId, data, currentUser);
         dispatch(taskAction.updateTask(updatedTask));

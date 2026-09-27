@@ -1,6 +1,6 @@
 import styles from "./profile.module.scss";
-import EditProfile from "../../components/EditProfile";
-import EditPassword from "../../components/EditPassword";
+import EditProfile from "../../components/Profile/EditProfile";
+import EditPassword from "../../components/Profile/EditPassword";
 
 const Profile = () => {
   return (

@@ -11,6 +11,13 @@ import { teamsActions } from "../../redux/slices/teamSlice";
 import { authActions } from "../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
+interface RegisterFormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const registerSchema = yup.object({
   name: yup
     .string()
@@ -30,13 +37,6 @@ const registerSchema = yup.object({
     .oneOf([yup.ref("password")], "Passwords must match"),
 });
 
-interface RegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
 const Register = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.users);
@@ -54,7 +54,7 @@ const Register = () => {
   const RegisterUser = (data: RegisterFormData) => {
     const existingUser = users?.find(
       (user) =>
-        user.email.toLocaleLowerCase() === data.email.toLocaleLowerCase(),
+        user.email.toLowerCase() === data.email.toLowerCase(),
     );
 
     if (existingUser) {

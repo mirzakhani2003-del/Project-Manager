@@ -1,8 +1,8 @@
 import styles from "./header.module.scss";
 import { FiBell, FiLogOut, FiMenu } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { authActions } from "../../redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { authActions } from "../../../redux/slices/authSlice";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -13,6 +13,10 @@ const Header = ({ onMenuClick }: HeaderProps) => {
   const dispatch = useAppDispatch();
 
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+  if (!currentUser) {
+    return;
+  }
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -31,7 +35,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
       </button>
       <div>
         <h1>Task Manager</h1>
-        {currentUser && <p>Welcome, {currentUser.name}</p>}
+        <p>Welcome, {currentUser.name}</p>
       </div>
 
       <div className={styles.actions}>

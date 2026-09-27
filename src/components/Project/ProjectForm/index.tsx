@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import styles from "./projectForm.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import type { User } from "../../types/user";
-import type { Project } from "../../types/project";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import type { User } from "../../../types/user";
+import type { Project } from "../../../types/project";
 import { v4 as uuid } from "uuid";
-import { projectAction } from "../../redux/slices/projectSlice";
+import { projectAction } from "../../../redux/slices/projectSlice";
 import { useEffect, useState } from "react";
 
 interface ProjectFormData {
@@ -31,9 +31,9 @@ const projectSchema = yup.object({
 });
 
 const ProjectForm = ({ initialData, projectId }: ProjectFormProps) => {
+  const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state) => state.auth.currentUser);
   const projects = useAppSelector((state) => state.projects.projects);
-  const dispatch = useAppDispatch();
 
   const [editingMode, setEditingMode] = useState(false);
 
@@ -53,6 +53,10 @@ const ProjectForm = ({ initialData, projectId }: ProjectFormProps) => {
       setEditingMode(true);
     }
   }, [initialData, reset]);
+
+  if (!currentUser) {
+    return;
+  }
 
   const createProject = (data: ProjectFormData, currentUser: User) => {
     if (currentUser.role !== "manager") {
@@ -96,10 +100,6 @@ const ProjectForm = ({ initialData, projectId }: ProjectFormProps) => {
 
   const onSubmit = (data: ProjectFormData) => {
     try {
-      if (!currentUser) {
-        return;
-      }
-
       if (editingMode && projectId) {
         const updatedProject = updateProject(projectId, data, currentUser);
         dispatch(projectAction.updateProject(updatedProject));

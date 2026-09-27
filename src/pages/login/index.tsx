@@ -36,7 +36,7 @@ const Login = () => {
   const loginUser = (data: LoginFormData) => {
     const user = users?.find(
       (user) =>
-        user.email.toLocaleLowerCase() === data.email.toLocaleLowerCase() &&
+        user.email.toLowerCase() === data.email.toLowerCase() &&
         user.password === data.password,
     );
 

@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styles from "./editProfile.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { User } from "../../types/user";
-import { userActions } from "../../redux/slices/userSlice";
-import { authActions } from "../../redux/slices/authSlice";
+import type { User } from "../../../types/user";
+import { userActions } from "../../../redux/slices/userSlice";
+import { authActions } from "../../../redux/slices/authSlice";
 
 interface EditProfileFormData {
   name: string;
@@ -40,6 +40,10 @@ const EditProfile = () => {
       email: currentUser?.email ?? "",
     },
   });
+ 
+  if (!currentUser) {
+    return;
+  }
 
   const updateProfile = (data: EditProfileFormData, currentUser: User) => {
     const existingUser = users.find(
@@ -62,10 +66,6 @@ const EditProfile = () => {
   };
 
   const onSubmit = (data: EditProfileFormData) => {
-    if (!currentUser) {
-      return;
-    }
-
     try {
       const updatedUser = updateProfile(data, currentUser);
       dispatch(userActions.updateUser(updatedUser));

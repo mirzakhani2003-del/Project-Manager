@@ -1,6 +1,5 @@
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 import ProjectCard from "../ProjectCard";
-
 import styles from "./projectList.module.scss";
 
 const ProjectList = () => {

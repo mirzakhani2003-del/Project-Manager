@@ -5,9 +5,9 @@ import { format } from "date-fns";
 import { projectAction } from "../../redux/slices/projectSlice";
 import { useState } from "react";
 import Modal from "../../components/Modal";
-import ProjectForm from "../../components/ProjectForm";
-import TaskForm from "../../components/TaskForm";
-import TaskList from "../../components/TaskList";
+import ProjectForm from "../../components/Project/ProjectForm";
+import TaskForm from "../../components/Task/TaskForm";
+import TaskList from "../../components/Task/TaskList";
 import type { Status, Task } from "../../types/task";
 import { taskAction } from "../../redux/slices/taskSlice";
 
@@ -21,6 +21,14 @@ const ProjectDetails = () => {
 
   const [projectFormModal, setProjectFormModal] = useState(false);
   const [taskFormModal, setTaskFormModal] = useState(false);
+
+  if (!currentUser) {
+    return;
+  }
+
+  if (!projectId) {
+    return;
+  }
 
   const project = projects.find((project) => project.id === projectId);
 
@@ -71,7 +79,7 @@ const ProjectDetails = () => {
       </section>
 
       <section className={styles.action}>
-        {currentUser?.role === "manager" && (
+        {currentUser.role === "manager" && (
           <>
             <button
               className={styles.edit}

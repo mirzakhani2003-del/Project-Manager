@@ -1,10 +1,14 @@
-import AddMemberFrom from "../../components/AddMemberForm";
-import UserList from "../../components/UserList";
+import AddMemberFrom from "../../components/User/AddMemberForm";
+import UserList from "../../components/User/UserList";
 import { useAppSelector } from "../../redux/hooks";
 import styles from "./users.module.scss";
 
 const Users = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+  if (!currentUser) {
+    return;
+  }
 
   return (
     <div className={styles.page}>
@@ -16,7 +20,7 @@ const Users = () => {
       </header>
 
       <div className={styles.content}>
-        {currentUser?.role === "manager" && (
+        {currentUser.role === "manager" && (
           <section className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Add Member</h2>
             <AddMemberFrom />

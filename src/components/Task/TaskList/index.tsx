@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../redux/hooks";
-import type { Status, Task } from "../../types/task";
+import { useAppSelector } from "../../../redux/hooks";
+import type { Status, Task } from "../../../types/task";
 import TaskCard from "../TaskCard";
 import styles from "./taskList.module.scss";
 
@@ -19,6 +19,7 @@ const TaskList = ({ projectId, tasks, handleStatusChange }: TaskListProprs) => {
   }
 
   const teamUsers = users.filter((user) => user.teamId === currentUser.teamId);
+
   const teamProjects = projects.filter(
     (project) => project.teamId === currentUser.teamId,
   );
@@ -33,23 +34,27 @@ const TaskList = ({ projectId, tasks, handleStatusChange }: TaskListProprs) => {
 
   return (
     <div className={styles.list}>
-      {taskToShow.map((task) => {
-        const assignedUser = teamUsers.find(
-          (user) => user.id === task.assignedTo,
-        );
-        const project = teamProjects.find(
-          (project) => project.id === task.projectId,
-        );
+      {taskToShow.length === 0 ? (
+        <p>No task found</p>
+      ) : (
+        taskToShow.map((task) => {
+          const assignedUser = teamUsers.find(
+            (user) => user.id === task.assignedTo,
+          );
+          const project = teamProjects.find(
+            (project) => project.id === task.projectId,
+          );
 
-        return (
-          <TaskCard
-            task={task}
-            assignedUser={assignedUser?.name ?? "Unknown User"}
-            project={project?.title ?? "Unknow Project"}
-            handleStatusChange={handleStatusChange}
-          />
-        );
-      })}
+          return (
+            <TaskCard
+              task={task}
+              assignedUser={assignedUser?.name ?? "Unknown User"}
+              project={project?.title ?? "Unknow Project"}
+              handleStatusChange={handleStatusChange}
+            />
+          );
+        })
+      )}
     </div>
   );
 };

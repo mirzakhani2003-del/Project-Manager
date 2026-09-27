@@ -1,10 +1,10 @@
 import { format } from "date-fns";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import type { Status, Task } from "../../types/task";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import type { Status, Task } from "../../../types/task";
 import styles from "./taskCard.module.scss";
-import { taskAction } from "../../redux/slices/taskSlice";
+import { taskAction } from "../../../redux/slices/taskSlice";
 import { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../../Modal";
 import TaskForm from "../TaskForm";
 
 interface TaskCardProps {
@@ -20,10 +20,14 @@ const TaskCard = ({
   project,
   handleStatusChange,
 }: TaskCardProps) => {
-  const currentUser = useAppSelector((state) => state.auth.currentUser);
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
 
   const [taskFormModal, setTaskFormModal] = useState(false);
+
+  if (!currentUser) {
+    return;
+  }
 
   const handleDelete = () => {
     const confirmed = window.confirm(
@@ -48,7 +52,7 @@ const TaskCard = ({
         <p className={styles.description}>{task.description}</p>
 
         <div className={styles.action}>
-          {currentUser?.role === "manager" && (
+          {currentUser.role === "manager" && (
             <>
               <button
                 className={styles.edit}
@@ -69,7 +73,7 @@ const TaskCard = ({
           {format(new Date(task.dueDate), "MMM d, yyyy")}
         </span>
 
-        {task.assignedTo === currentUser?.id ? (
+        {task.assignedTo === currentUser.id ? (
           <select
             id="status"
             value={task.status}

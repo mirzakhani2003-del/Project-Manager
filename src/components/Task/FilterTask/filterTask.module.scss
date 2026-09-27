@@ -1,0 +1,63 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.7rem;
+  padding: 1rem;
+
+  .field:first-child {
+    grid-column: span 5;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      color: #0f172a;
+      background-color: white;
+      outline: none;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #64748b;
+      box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+    }
+  }
+
+  .button {
+    align-self: flex-start;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .button:hover {
+    background-color: #1e293b;
+    transform: translateY(1px);
+  }
+}
