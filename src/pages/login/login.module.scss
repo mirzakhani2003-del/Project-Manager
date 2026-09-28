@@ -1,19 +1,20 @@
+@use "../../styles/variables.scss" as *;
+
 .page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background-color: #f5f6f8;
+  background-color: $color-background;
 
   .card {
     width: 100%;
     max-width: 460px;
     padding: 2rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 0.7rem;
+    background-color: $color-surface;
+    box-shadow: $box-shadow;
 
     .header {
       margin-bottom: 2rem;
@@ -25,14 +26,14 @@
       }
 
       p {
-        color: #6b7280;
+        color: $color-text-secondary;
       }
     }
 
     .form {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
 
       .field {
         display: flex;
@@ -47,61 +48,61 @@
         input {
           width: 100%;
           padding: 0.8rem 0.9rem;
-          border: 1px solid #d1d5db;
-          border-radius: 8px;
+          border: 1px solid $color-border;
+          border-radius: 0.7rem;
           outline: none;
-          transition: border-color 0.2s ease;
+          transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
         }
 
         input:focus {
-          border-color: black;
+          border-color: $color-border-black;
+          box-shadow: $color-input-focus-shadow;
         }
 
         .error {
-          color: #dc2626;
+          color: $color-danger;
           font-size: 0.8rem;
         }
       }
 
       .formError {
-        padding: 0.75rem;
-        border-radius: 8px;
-        background-color: #fef2f2;
-        color: #dc2626;
-        font-size: 0.9rem;
+        color: $color-danger;
+        font-size: 0.8rem;
       }
 
       .submitButton {
-        padding: 0.8rem;
+        padding: 0.7rem;
         border: none;
-        border-radius: 8px;
-        background-color: black;
-        color: white;
+        border-radius: 0.7rem;
+        background-color: $color-button;
+        color: $color-text-white;
         font-weight: 600;
         cursor: pointer;
-        transition: opacity 0.2s ease;
+        transition: background-color 0.2s ease;
       }
 
       .submitButton:hover {
-        opacity: 0.8;
+        background-color: $color-button-hover;
       }
     }
 
     .footer {
       margin-top: 1.5rem;
       text-align: center;
-      color: #6b7280;
+      color: $color-text-secondary;
       font-size: 0.9rem;
-    }
 
-    .footer a {
-      color: #111;
-      font-weight: 600;
-      text-decoration: none;
-    }
+      a {
+        color: $color-text;
+        font-weight: 600;
+        text-decoration: none;
+      }
 
-    .footer a:hover {
-      text-decoration: underline;
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

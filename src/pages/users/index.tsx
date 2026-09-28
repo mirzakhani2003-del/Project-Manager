@@ -1,10 +1,14 @@
+import { useState } from "react";
 import AddMemberFrom from "../../components/User/AddMemberForm";
 import UserList from "../../components/User/UserList";
 import { useAppSelector } from "../../redux/hooks";
 import styles from "./users.module.scss";
+import Modal from "../../components/Modal";
 
 const Users = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (!currentUser) {
     return;
@@ -22,8 +26,12 @@ const Users = () => {
       <div className={styles.content}>
         {currentUser.role === "manager" && (
           <section className={styles.formSection}>
-            <h2 className={styles.sectionTitle}>Add Member</h2>
-            <AddMemberFrom />
+            <button className={styles.addMember} onClick={() => setOpenModal(true)}>Add Member</button>
+            {openModal && (
+              <Modal onClose={() => setOpenModal(false)}>
+                <AddMemberFrom />
+              </Modal>
+            )}
           </section>
         )}
 

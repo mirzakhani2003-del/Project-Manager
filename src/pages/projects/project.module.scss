@@ -1,7 +1,9 @@
+@use "../../styles/variables.scss" as *;
+
 .page {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 
   .header {
     display: flex;
@@ -9,12 +11,12 @@
     gap: 0.5rem;
 
     .title {
-      font-size: 1.8rem;
-      color: #0f172a;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
     .subtitle {
-      color: #64748b;
+      color: $color-text-secondary;
     }
   }
 
@@ -23,19 +25,38 @@
     flex-direction: column;
     gap: 1.5rem;
 
+    .action {
+      border: 1px solid $color-border;
+      border-radius: 0.7rem;
+      background-color: $color-surface;
+      padding: 1.5rem;
+
+      .addProject {
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.7rem;
+        border: 1px solid $color-success;
+        background-color: $color-success-background;
+        color: $color-success;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+      .addProject:hover {
+        background-color: $color-success-background-hover;
+        transform: translateY(1px);
+      }
+    }
+
     .section {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       padding: 1.5rem;
-      border: 1px solid #e2e8f0;
+      border: 1px solid $color-border;
       border-radius: 0.7rem;
-      background-color: white;
-
-      h2 {
-        font-size: 1rem;
-        color: #0f172a;
-      }
+      background-color: $color-surface;
     }
   }
 }

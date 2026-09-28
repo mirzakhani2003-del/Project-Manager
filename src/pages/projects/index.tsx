@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Modal from "../../components/Modal";
 import ProjectForm from "../../components/Project/ProjectForm";
 import ProjectList from "../../components/Project/ProjectList";
 import { useAppSelector } from "../../redux/hooks";
@@ -5,6 +7,8 @@ import styles from "./project.module.scss";
 
 const Projects = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (!currentUser) {
     return;
@@ -22,9 +26,18 @@ const Projects = () => {
 
       <div className={styles.content}>
         {currentUser.role === "manager" && (
-          <section className={styles.section}>
-            <h2>Create Project</h2>
-            <ProjectForm />
+          <section className={styles.action}>
+            <button
+              className={styles.addProject}
+              onClick={() => setOpenModal(true)}
+            >
+              Add Project
+            </button>
+            {openModal && (
+              <Modal onClose={() => setOpenModal(false)}>
+                <ProjectForm />
+              </Modal>
+            )}
           </section>
         )}
 

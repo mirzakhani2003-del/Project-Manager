@@ -1,13 +1,15 @@
+@use "../../../styles/variables.scss" as *;
+
 .sideBar {
   width: 240px;
   min-height: 100vh;
   padding: 1.5rem;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid $color-border;
 
   .logo {
     display: block;
     text-decoration: none;
-    color: black;
+    color: $color-text;
     margin-bottom: 2rem;
   }
 
@@ -21,18 +23,22 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0 0.75rem;
-      border-radius: 8px;
+      padding: 0.4rem 0.7rem;
+      border-radius: 0.7rem;
       text-decoration: none;
     }
 
     .link {
-      color: #555;
+      color: $color-text-secondary;
     }
 
     .activeLink {
-      color: #000;
-      background-color: #eee;
+      color: $color-text-white;
+      background-color: $color-background-black;
+    }
+
+    .link:hover {
+      color: $color-primary;;
     }
   }
 }
@@ -40,7 +46,7 @@
 @media (max-width: 900px) {
   .sideBar {
     position: fixed;
-    background-color: white;
+    background-color: $color-background;
     top: 0;
     left: 0;
     width: 240px;

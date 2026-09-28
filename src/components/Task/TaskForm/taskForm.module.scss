@@ -1,3 +1,5 @@
+@use "../../../styles/variables.scss" as *;
+
 .form {
   display: flex;
   flex-direction: column;
@@ -11,18 +13,18 @@
     label {
       font-size: 0.8rem;
       font-weight: 600;
-      color: #334155;
+      color: $color-text-secondary;
     }
 
     input,
     textarea,
     select {
       width: 100%;
-      padding: 0.7rem 0.8rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 0.5rem;
-      color: #0f172a;
-      background-color: white;
+      padding: 0.8rem 0.9rem;
+      border: 1px solid $color-border;
+      border-radius: 0.7rem;
+      color: $color-text;
+      background-color: color-surface;
       outline: none;
       transition:
         border-color 0.2s ease,
@@ -32,8 +34,8 @@
     input:focus,
     textarea:focus,
     select:hover {
-      border-color: #64748b;
-      box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+      border-color: $color-border-black;
+      box-shadow: $color-input-focus-shadow;
     }
 
     textarea {
@@ -41,7 +43,7 @@
     }
 
     .error {
-      color: #dc2626;
+      color: $color-danger;
       font-size: 0.8rem;
     }
   }
@@ -56,21 +58,17 @@
   }
 
   .button {
-    align-self: flex-start;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.7rem;
+    background-color: $color-button;
+    color: $color-text-white;
     font-weight: 600;
     cursor: pointer;
-    background-color: black;
-    color: white;
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
+    transition: background-color 0.2s ease;
   }
 
   .button:hover {
-    background-color: #1e293b;
-    transform: translateY(1px);
+    background-color: $color-button-hover;
   }
 }

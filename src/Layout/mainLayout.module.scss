@@ -1,3 +1,5 @@
+@use "../styles/variables.scss" as *;
+
 .layout {
   display: flex;
   height: 100vh;
@@ -29,6 +31,6 @@
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(0, 0, 0, 0.7);
+    background: $color-overlay;
   }
 }

@@ -1,29 +1,39 @@
+@use "../../styles/variables.scss" as *;
+
 .overlay {
   height: 100vh;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: $color-overlay;
   display: flex;
   align-self: center;
   justify-content: center;
 
   .modal {
-    background-color: white;
+    background-color: $color-background;
     margin: auto;
-    padding: 24px;
+    padding: 1rem;
     border-radius: 0.7rem;
     width: 800px;
     height: max-content;
 
     .closeBtn {
-      padding: 0.5rem 1rem;
-      border: 1px solid #fecaca;
-      border-radius: 0.7rem;
+      padding: 0.4rem 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid $color-danger;
+      border-radius: 999px;
       font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
-      background: #fef2f2;
-      margin-bottom: 10px;
+      color: $color-danger;
+      background: $color-danger-bachground;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .closeBtn:hover {
+      background: $color-danger-bachground-hover;
     }
   }
 }

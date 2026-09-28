@@ -1,39 +1,41 @@
+@use "../../../styles/variables.scss" as *;
+
 .card {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid $color-border;
   border-radius: 0.7rem;
-  background-color: white;
+  background-color: $color-surface;
   cursor: pointer;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-        .title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .description {
-            line-height: 1.6;
-            color: #475569;
-        }
-
-        .date {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-top: 0.25rem;
-        }
+    .title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
+
+    .description {
+      line-height: 1.6;
+      color: $color-text-secondary;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: $color-text-secondary;
+      margin-top: 0.2rem;
+    }
+  }
 }
 
 .card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: $color-button-hover;
+  box-shadow: $box-shadow;
 }

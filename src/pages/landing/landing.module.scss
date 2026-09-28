@@ -1,267 +1,291 @@
+@use "../../styles/variables.scss" as *;
+
 .landing {
   min-height: 100vh;
-  background-color: #fff;
-  color: #1a1a1a;
-}
+  background-color: $color-surface;
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-}
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
 
-.logo {
-  color: #1a1a1a;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-decoration: none;
-}
+    .logo {
+      color: $color-text;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
 
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
 
-.welcome {
-  color: #666;
-  font-size: 0.9rem;
-}
+      .welcome {
+        color: $color-text-secondary;
+        font-size: 0.9rem;
+      }
 
-.dashboardButton {
-  padding: 0.65rem 1rem;
-  border-radius: 8px;
-  background-color: #111;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
+      .dashboardButton,
+      .registerButton {
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        background-color: $color-button;
+        color: $color-text-white;
+        font-weight: 600;
+        text-decoration: none;
+      }
 
-.logoutButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.65rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: transparent;
-  color: #333;
-  font-weight: 600;
-  cursor: pointer;
-}
+      .dashboardButton:hover,
+      .registerButton:hover {
+        background-color: $color-button-hover;
+      }
 
-.dashboardButton:hover {
-  opacity: 0.85;
-}
+      .logoutButton,
+      .loginLink {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        border: 1px solid $color-border-black;
+        text-decoration: none;
+        background-color: $color-button-white;
+        color: $color-text-secondary;
+        font-weight: 600;
+        cursor: pointer;
+      }
 
-.logoutButton:hover {
-  background-color: #f5f5f5;
-}
+      .logoutButton:hover,
+      .loginLink:hover {
+        background-color: $color-button-white-hover;
+      }
+    }
+  }
 
-.loginLink {
-  color: #444;
-  font-weight: 500;
-  text-decoration: none;
-}
+  main {
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 2rem 6rem;
+      text-align: center;
 
-.registerButton,
-.primaryButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
+      .heroContent {
+        max-width: 800px;
+        margin: 0 auto;
 
-.registerButton {
-  padding: 0.65rem 1rem;
-  background-color: #111;
-  color: #fff;
-}
+        .badge {
+          display: inline-block;
+          margin-bottom: 1rem;
+          padding: 0.4rem 0.8rem;
+          border-radius: 999px;
+          background-color: $color-background;
+          color: $color-text-secondary;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
 
-.registerButton:hover,
-.primaryButton:hover {
-  opacity: 0.85;
-}
+        h1 {
+          font-size: clamp(2.5rem, 6vw, 4.5rem);
+          line-height: 1.1;
+          letter-spacing: -0.04em;
 
-.hero {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 7rem 2rem 6rem;
-  text-align: center;
-}
+          span {
+            color: $color-text-secondary;
+          }
+        }
 
-.heroContent {
-  max-width: 800px;
-  margin: 0 auto;
-}
+        p {
+          max-width: 650px;
+          margin: 1.5rem auto 0;
+          color: $color-text-secondary;
+          font-size: 1.1rem;
+          line-height: 1.7;
+        }
 
-.badge {
-  display: inline-block;
-  margin-bottom: 1rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  background-color: #f1f1f1;
-  color: #555;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
+        .heroActions {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 2rem;
 
-.hero h1 {
-  margin: 0;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-}
+          .primaryButton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+            background-color: $color-button;
+            color: $color-text-white;
+          }
 
-.hero h1 span {
-  color: #666;
-}
+          .primaryButton:hover {
+            background-color: $color-button-hover;
+          }
 
-.hero p {
-  max-width: 650px;
-  margin: 1.5rem auto 0;
-  color: #666;
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
+          .secondaryButton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1rem;
+            border: 1px solid $color-border-black;
+            border-radius: 0.7rem;
+            color: $color-text-secondary;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            background-color: $color-button-white;
+          }
+        }
+      }
+    }
 
-.heroActions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
+    .features {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
 
-.primaryButton {
-  padding: 0.85rem 1.25rem;
-  background-color: #111;
-  color: #fff;
-}
+      .sectionHeader {
+        max-width: 650px;
+        margin: 0 auto 3rem;
+        text-align: center;
 
-.secondaryButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.25rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  color: #333;
-  text-decoration: none;
-  font-weight: 600;
-}
+        .badge {
+          display: inline-block;
+          margin-bottom: 1rem;
+          padding: 0.4rem 0.8rem;
+          border-radius: 999px;
+          background-color: $color-background;
+          color: $color-text-secondary;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
 
-.features {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 5rem 2rem;
-}
+        h2 {
+          font-size: 2.2rem;
+        }
 
-.sectionHeader {
-  max-width: 650px;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
+        p {
+          margin-top: 1rem;
+          color: $color-text-secondary;
+          line-height: 1.6;
+        }
+      }
 
-.sectionHeader h2 {
-  margin: 0;
-  font-size: 2.2rem;
-}
+      .featureGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
 
-.sectionHeader p {
-  margin-top: 1rem;
-  color: #666;
-  line-height: 1.6;
-}
+        .featureCard {
+          padding: 2rem;
+          border: 1px solid $color-border;
+          border-radius: 12px;
+          background-color: $color-surface;
 
-.featureGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
+          svg {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1rem;
+          }
 
-.featureCard {
-  padding: 2rem;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  background-color: #fff;
-}
+          h3 {
+            margin-bottom: 0.7rem;
+          }
 
-.featureCard svg {
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 1rem;
-}
+          p {
+            color: $color-text-secondary;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
 
-.featureCard h3 {
-  margin: 0 0 0.75rem;
-}
+    .cta {
+      margin: 3rem auto 0;
+      padding: 5rem 2rem;
+      background-color: $color-background;
+      text-align: center;
 
-.featureCard p {
-  margin: 0;
-  color: #666;
-  line-height: 1.6;
-}
+      h2 {
+        font-size: 2.2rem;
+      }
 
-.cta {
-  margin: 3rem auto 0;
-  padding: 5rem 2rem;
-  background-color: #f5f5f5;
-  text-align: center;
-}
+      p {
+        margin: 1rem 0 2rem;
+        color: $color-text-secondary;
+      }
 
-.cta h2 {
-  margin: 0;
-  font-size: 2.2rem;
-}
+      .primaryButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s ease;
+        background-color: $color-button;
+        color: $color-text-white;
+      }
 
-.cta p {
-  margin: 1rem 0 2rem;
-  color: #666;
-}
+      .primaryButton:hover {
+        background-color: $color-button-hover;
+      }
+    }
+  }
 
-.footer {
-  padding: 2rem;
-  border-top: 1px solid #eee;
-  text-align: center;
-  color: #777;
-  font-size: 0.9rem;
+  .footer {
+    padding: 2rem;
+    border-top: 1px solid $color-border;
+    text-align: center;
+    color: $color-text-secondary;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
+  .landing {
+    .header {
+      padding: 1rem;
+    }
 
-  .hero {
-    padding: 5rem 1.5rem;
-  }
+    main {
+      .hero {
+        padding: 5rem 1.5rem;
+      }
 
-  .heroActions {
-    flex-direction: column;
-  }
+      .heroContent .heroActions {
+        flex-direction: column;
+      }
 
-  .featureGrid {
-    grid-template-columns: 1fr;
-  }
+      .features {
+        padding: 4rem 1.5rem;
 
-  .features {
-    padding: 4rem 1.5rem;
+        .featureGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 480px) {
-  .loginLink {
-    display: none;
-  }
+  .landing {
+    .header .nav .loginLink {
+      display: none;
+    }
 
-  .hero h1 {
-    font-size: 2.5rem;
+    .hero h1 {
+      font-size: 2.5rem;
+    }
   }
 }

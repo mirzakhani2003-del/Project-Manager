@@ -42,64 +42,76 @@ const TaskCard = ({
   };
 
   return (
-    <div className={styles.card}>
+    <article className={styles.card}>
       <div className={styles.header}>
-        <h3 className={styles.title}>
-          {task.title} - {project}
-          <span>{task.priority}</span>
-        </h3>
+        <h3 className={styles.title}>{task.title}</h3>
+        <span>{task.priority}</span>
+      </div>
 
-        <p className={styles.description}>{task.description}</p>
+      <p className={styles.description}>{task.description}</p>
 
-        <div className={styles.action}>
-          {currentUser.role === "manager" && (
-            <>
-              <button
-                className={styles.edit}
-                onClick={() => setTaskFormModal(true)}
-              >
-                Edit
-              </button>
-              <button className={styles.delete} onClick={handleDelete}>
-                Delete
-              </button>
-            </>
+      <div className={styles.details}>
+        <div className={styles.detail}>
+          <span className={styles.label}>Assigned To</span>
+          <span className={styles.value}>{assignedUser ?? "Unknown user"}</span>
+        </div>
+
+        <div className={styles.detail}>
+          <span className={styles.label}>Due Date</span>
+          <span className={styles.value}>
+            {format(new Date(task.dueDate), "MMM d, yyyy")}
+          </span>
+        </div>
+
+        <div className={styles.detail}>
+          <span className={styles.label}>Status</span>
+
+          {task.assignedTo === currentUser.id ? (
+            <select
+              id="status"
+              value={task.status}
+              onChange={(event) =>
+                handleStatusChange(task, event.target.value as Status)
+              }
+            >
+              <option value="todo">Todo</option>
+              <option value="in-progress">In-progress</option>
+              <option value="done">Done</option>
+            </select>
+          ) : (
+            <p className={styles.value}>Status: {task.status}</p>
           )}
+        </div>
+
+        <div className={styles.detail}>
+          <span className={styles.label}>Created</span>
+
+          <span className={styles.value}>
+            {format(new Date(task.createdAt), "MMM d, yyyy")}
+          </span>
         </div>
       </div>
 
-      <div className={styles.details}>
-        <span className={styles.dueDate}>
-          {format(new Date(task.dueDate), "MMM d, yyyy")}
-        </span>
-
-        {task.assignedTo === currentUser.id ? (
-          <select
-            id="status"
-            value={task.status}
-            onChange={(event) =>
-              handleStatusChange(task, event.target.value as Status)
-            }
+      {currentUser.role === "manager" && (
+        <div className={styles.action}>
+          <button
+            className={styles.edit}
+            onClick={() => setTaskFormModal(true)}
           >
-            <option value="todo">Todo</option>
-            <option value="in-progress">In-progress</option>
-            <option value="done">Done</option>
-          </select>
-        ) : (
-          <p className={styles.status}>Status: {task.status}</p>
-        )}
-        <p className={styles.assignedTo}>User: {assignedUser}</p>
-        <span className={styles.createdAt}>
-          {format(new Date(task.createdAt), "MMM d, yyyy")}
-        </span>
-      </div>
+            Edit
+          </button>
+          <button className={styles.delete} onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
+      )}
 
       {taskFormModal && (
         <Modal onClose={() => setTaskFormModal(false)}>
           <TaskForm projectId={project} initialData={task} taskId={task.id} />
         </Modal>
       )}
-    </div>
+    </article>
   );
 };
 

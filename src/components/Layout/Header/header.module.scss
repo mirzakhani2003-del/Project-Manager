@@ -1,19 +1,21 @@
+@use "../../../styles/variables.scss" as *;
+
 .header {
   height: 64px;
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $color-border;
 
   .menuButton {
     display: none;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 0.7rem;
     border: none;
-    color: black;
-    background-color: white;
+    color: $color-button;
+    background-color: $color-surface;
     cursor: pointer;
     font-size: 16px;
   }
@@ -35,12 +37,21 @@
   }
 
   .logoutButton {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
     border: none;
-    background: transparent;
+    text-decoration: none;
+    background-color: $color-button;
+    color: $color-text-white;
+    font-weight: 600;
     cursor: pointer;
+  }
+
+  .logoutButton:hover {
+    background-color: $color-button-hover;
   }
 }
 
