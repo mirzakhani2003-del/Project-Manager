@@ -3,7 +3,7 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .header {
     display: flex;
@@ -22,29 +22,70 @@
     }
   }
 
-  .sectionContainer {
+  .container {
+    background-color: $color-surface;
+    border: 1px solid $color-border;
+    padding: 1rem 3rem;
+    border-radius: 0.7rem;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
 
-    .section {
-      width: 100%;
-      height: max-content;
-      padding: 1.5rem;
-      background: $color-surface;
-      border: 1px solid $color-border;
-      border-radius: 0.7rem;
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      color: $color-text-secondary;
     }
 
-    .sectionTitle {
+    .content {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 1rem;
-      font-size: 1.2rem;
-      font-weight: 600;
+
+      .name {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .email,
+      .role {
+        color: $color-text-secondary;
+      }
     }
   }
-}
 
-@media (max-width: 900px) {
-  .sectionContainer {
-    flex-direction: column;
+  .action {
+    padding: 1rem;
+    border: 1px solid $color-border;
+    background-color: $color-surface;
+    border-radius: 0.7rem;
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.7rem;
+      border: none;
+      border-radius: 0.7rem;
+      background-color: $color-button;
+      color: $color-text-white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: $color-button-hover;
+    }
+  }
+
+  .section {
+    background-color: $color-surface;
+    border: 1px solid $color-border;
+    padding: 1rem;
+    border-radius: 0.7rem;
+    height: fit-content;
   }
 }
