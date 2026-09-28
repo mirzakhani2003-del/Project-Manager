@@ -1,0 +1,70 @@
+@use "../../../styles/variables.scss" as *;
+
+.container {
+  padding: 1rem;
+  border: 1px solid $color-border;
+  border-radius: 0.7rem;
+  background-color: $color-surface;
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .empty {
+    color: $color-text-secondary;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid $color-border;
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .taskTitle {
+          font-size: 0.95rem;
+        }
+
+        .date {
+          font-size: 0.8rem;
+          color: $color-text-secondary;
+        }
+      }
+
+      .status {
+        flex-shrink: 0;
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.7rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .todo {
+      background-color: $color-danger;
+    }
+
+    .in-progress {
+      background-color: $color-warning;
+    }
+
+    .done {
+      background-color: $color-success;
+    }
+  }
+}
