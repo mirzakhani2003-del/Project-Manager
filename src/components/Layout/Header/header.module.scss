@@ -27,6 +27,7 @@
   }
 
   .notificationButton {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,6 +35,23 @@
     background-color: transparent;
     cursor: pointer;
     font-size: 1.2rem;
+
+    .notificationBadge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      max-width: 18px;
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background-color: $color-danger;
+      color: $color-text-white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1;
+    }
   }
 
   .logoutButton {

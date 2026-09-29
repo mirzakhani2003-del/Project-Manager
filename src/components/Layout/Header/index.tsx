@@ -12,11 +12,25 @@ const Header = ({ onMenuClick }: HeaderProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const notifications = useAppSelector(
+    (state) => state.notifications.notifications,
+  );
+
   const currentUser = useAppSelector((state) => state.auth.currentUser);
 
   if (!currentUser) {
     return;
   }
+
+  const userNotifications = notifications.filter(
+    (notification) =>
+      notification.teamId === currentUser.teamId &&
+      notification.userId === currentUser.id,
+  );
+
+  const unreadNotifications = userNotifications.filter(
+    (notification) => notification.isRead === false,
+  );
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -39,8 +53,19 @@ const Header = ({ onMenuClick }: HeaderProps) => {
       </div>
 
       <div className={styles.actions}>
-        <button className={styles.notificationButton} type="button">
+        <button
+          className={styles.notificationButton}
+          type="button"
+          onClick={() => navigate("/notifications")}
+        >
           <FiBell />
+          {unreadNotifications.length > 0 && (
+            <span className={styles.notificationBadge}>
+              {unreadNotifications.length > 99
+                ? "99+"
+                : unreadNotifications.length}
+            </span>
+          )}
         </button>
         <button
           className={styles.logoutButton}

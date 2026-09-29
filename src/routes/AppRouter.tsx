@@ -10,6 +10,7 @@ import Tasks from "../pages/tasks";
 import Users from "../pages/users";
 import Profile from "../pages/profile";
 import ProjectDetails from "../pages/projectDetails";
+import Notifications from "../pages/notifications";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Profile />,
+          },
+          {
+            path: "/notifications",
+            element: <Notifications />,
           },
         ],
       },

@@ -4,7 +4,9 @@ import teamsReducer from "./slices/teamSlice";
 import authReducer from "./slices/authSlice";
 import projectReducer from "./slices/projectSlice";
 import taskReducer from "./slices/taskSlice";
+import notificationReducer from "./slices/notificationSlice";
 import { storage } from "../utils/storage";
+import { notficationListenerMiddleware } from "./listeners/notificationListener";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +15,10 @@ export const store = configureStore({
     auth: authReducer,
     projects: projectReducer,
     tasks: taskReducer,
+    notifications: notificationReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(notficationListenerMiddleware.middleware),
 });
 
 store.subscribe(() => {
@@ -41,6 +46,10 @@ store.subscribe(() => {
 
   if (state.tasks.tasks) {
     storage.setTasks(state.tasks.tasks);
+  }
+
+  if (state.notifications.notifications) {
+    storage.setNotifications(state.notifications.notifications);
   }
 });
 

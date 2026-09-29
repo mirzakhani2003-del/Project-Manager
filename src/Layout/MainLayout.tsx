@@ -3,6 +3,7 @@ import Header from "../components/Layout/Header";
 import Sidebar from "../components/Layout/Sidebar";
 import styles from "./mainLayout.module.scss";
 import { useState } from "react";
+import TaskReminderManager from "../components/TaskReminder/TaskReminderManager";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,6 +35,8 @@ const MainLayout = () => {
           <Outlet />
         </main>
       </div>
+
+      <TaskReminderManager />
     </div>
   );
 };
