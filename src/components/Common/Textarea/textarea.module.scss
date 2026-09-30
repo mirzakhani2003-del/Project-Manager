@@ -1,0 +1,62 @@
+@use "../../../styles/variables" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.label {
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: $spacing-3;
+  border: 1px solid $color-border-dark;
+  border-radius: $radius-md;
+  color: $color-text;
+  background-color: $color-surface;
+  font: inherit;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  outline: none;
+  resize: vertical;
+  transition:
+    border-color $transition-normal,
+    box-shadow $transition-normal,
+    background-color $transition-normal;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px $color-primary-light;
+  }
+
+  &:disabled {
+    color: $color-text-muted;
+    background-color: $color-surface-muted;
+    cursor: not-allowed;
+  }
+}
+
+.errorTextarea {
+  border-color: $color-danger;
+
+  &:focus {
+    border-color: $color-danger;
+    box-shadow: 0 0 0 3px $color-danger-light;
+  }
+}
+
+.errorMessage {
+  margin: 0;
+  color: $color-danger;
+  font-size: $font-size-xs;
+}

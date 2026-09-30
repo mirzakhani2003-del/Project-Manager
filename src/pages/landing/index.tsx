@@ -46,7 +46,7 @@ const Landing = () => {
           ) : (
             <>
               <Link to="/register" className={styles.registerButton}>
-                Sign in
+                Sign up
               </Link>
               <Link to="/login" className={styles.loginLink}>
                 Login

@@ -1,45 +1,68 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $spacing-4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding: $spacing-5;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+  transition:
+    box-shadow $transition-normal,
+    transform $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-3;
+}
+
+.label {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.cardContent svg {
+  flex-shrink: 0;
+  color: $color-primary;
+  font-size: $font-size-xl;
+}
+
+.value {
+  color: $color-text;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    grid-template-columns: 1fr;
+  }
 
   .card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    border: 1px solid $color-border;
-    background-color: $color-surface;
-    border-radius: 0.7rem;
-
-    .cardContent {
-      display: flex;
-      justify-content: space-between;
-      font-size: 2rem;
-
-      .label {
-        font-size: 1rem;
-        font-weight: 600;
-      }
-    }
-
-    .value {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: repeat(1, 1fr);
+    padding: $spacing-4;
   }
 }

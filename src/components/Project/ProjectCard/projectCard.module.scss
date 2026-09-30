@@ -1,41 +1,73 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .card {
   width: 100%;
-  padding: 1rem;
+  min-height: 190px;
+  padding: $spacing-5;
   border: 1px solid $color-border;
-  border-radius: 0.7rem;
+  border-radius: $radius-lg;
   background-color: $color-surface;
+  box-shadow: $shadow-sm;
   cursor: pointer;
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    border-color $transition-normal,
+    box-shadow $transition-normal,
+    transform $transition-normal;
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  &:hover {
+    border-color: $color-border-dark;
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
 
-    .title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .description {
-      line-height: 1.6;
-      color: $color-text-secondary;
-    }
-
-    .date {
-      font-size: 0.8rem;
-      color: $color-text-secondary;
-      margin-top: 0.2rem;
-    }
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-color: $color-primary;
   }
 }
 
-.card:hover {
-  border-color: $color-button-hover;
-  box-shadow: $box-shadow;
+.content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-3;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: $spacing-3;
+  border-top: 1px solid $color-border;
+}
+
+.date {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
 }

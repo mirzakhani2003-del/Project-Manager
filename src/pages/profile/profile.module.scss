@@ -1,91 +1,201 @@
-@use "../../styles/variables.scss" as *;
+@use "../../styles/variables" as *;
 
 .page {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: $spacing-6;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-4;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+}
+
+.subtitle {
+  margin-top: $spacing-2;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.profileCard {
+  padding: $spacing-6;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.profileHero {
+  display: flex;
+  align-items: center;
+  gap: $spacing-5;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-full;
+  color: $color-primary;
+  background-color: $color-primary-light;
+  font-size: 3.5rem;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: $spacing-2;
+}
+
+.name {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  overflow-wrap: anywhere;
+}
+
+.email {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  overflow-wrap: anywhere;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-5;
+}
+
+.infoCard,
+.securityCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  padding-bottom: $spacing-4;
+  border-bottom: 1px solid $color-border;
+}
+
+.cardTitle {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.cardDescription {
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding: $spacing-5 0;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.value {
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: $spacing-4;
+  border-top: 1px solid $color-border;
+}
+
+.securityContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+  padding-top: $spacing-5;
+}
+
+.securityTitle {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.securityDescription {
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+@media (max-width: $breakpoint-md) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .page {
+    gap: $spacing-5;
+  }
 
   .header {
-    display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-
-    .title {
-      margin: 0;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: $color-text-secondary;
-    }
   }
 
-  .container {
-    background-color: $color-surface;
-    border: 1px solid $color-border;
-    padding: 1rem 3rem;
-    border-radius: 0.7rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 2rem;
-
-    .hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-      color: $color-text-secondary;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-
-      .name {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .email,
-      .role {
-        color: $color-text-secondary;
-      }
-    }
+  .profileCard {
+    padding: $spacing-4;
   }
 
-  .action {
-    padding: 1rem;
-    border: 1px solid $color-border;
-    background-color: $color-surface;
-    border-radius: 0.7rem;
-    display: flex;
-    gap: 0.5rem;
-
-    button {
-      padding: 0.7rem;
-      border: none;
-      border-radius: 0.7rem;
-      background-color: $color-button;
-      color: $color-text-white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    button:hover {
-      background-color: $color-button-hover;
-    }
+  .profileHero {
+    align-items: flex-start;
+    gap: $spacing-4;
   }
 
-  .section {
-    background-color: $color-surface;
-    border: 1px solid $color-border;
-    padding: 1rem;
-    border-radius: 0.7rem;
-    height: fit-content;
+  .avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 2.75rem;
+  }
+
+  .name {
+    font-size: $font-size-lg;
+  }
+
+  .actions > button,
+  .securityContent > button {
+    width: 100%;
   }
 }

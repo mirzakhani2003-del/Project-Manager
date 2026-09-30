@@ -1,0 +1,87 @@
+@use "../../../styles/variables" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  background-color: transparent;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color $transition-normal,
+    border-color $transition-normal,
+    color $transition-normal,
+    box-shadow $transition-normal,
+    opacity $transition-normal;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $color-primary-light;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+  font-size: $font-size-sm;
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+  font-size: $font-size-md;
+}
+
+.lg {
+  width: 48px;
+  height: 48px;
+  font-size: $font-size-lg;
+}
+
+.default {
+  color: $color-text-secondary;
+  background-color: $color-surface;
+  border-color: $color-border;
+
+  &:hover:not(:disabled) {
+    color: $color-text;
+    background-color: $color-surface-muted;
+  }
+}
+
+.primary {
+  color: $color-primary;
+  background-color: $color-primary-light;
+
+  &:hover:not(:disabled) {
+    color: $color-primary-hover;
+    background-color: #dbeafe;
+  }
+}
+
+.danger {
+  color: $color-danger;
+  background-color: $color-danger-light;
+
+  &:hover:not(:disabled) {
+    background-color: #fee2e2;
+  }
+}
+
+.ghost {
+  color: $color-text-secondary;
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    color: $color-text;
+    background-color: $color-surface-muted;
+  }
+}

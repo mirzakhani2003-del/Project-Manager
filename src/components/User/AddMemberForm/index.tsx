@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import type { User } from "../../../types/user";
 import { v4 as uuid } from "uuid";
 import { userActions } from "../../../redux/slices/userSlice";
+import Input from "../../Common/Input";
+import Button from "../../Common/Button";
 
 interface AddMemberFromData {
   name: string;
@@ -53,8 +55,7 @@ const AddMemberFrom = () => {
     }
 
     const existingUser = users.find(
-      (user) =>
-        user.email.toLowerCase() === data.email.toLowerCase(),
+      (user) => user.email.toLowerCase() === data.email.toLowerCase(),
     );
 
     if (existingUser) {
@@ -90,29 +91,33 @@ const AddMemberFrom = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.field}>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" {...register("name")} />
-        {errors.name && <p className={styles.error}>{errors.name.message}</p>}
-      </div>
+      <Input
+        label="Name"
+        type="text"
+        id="name"
+        {...register("name")}
+        error={errors.name?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" {...register("email")} />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
-      </div>
+      <Input
+        label="Email"
+        type="email"
+        id="email"
+        {...register("email")}
+        error={errors.email?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" {...register("password")} />
-        {errors.password && (
-          <p className={styles.error}>{errors.password.message}</p>
-        )}
-      </div>
+      <Input
+        label="Password"
+        type="password"
+        id="password"
+        {...register("password")}
+        error={errors.password?.message}
+      />
 
-      <button className={styles.submitButton} type="submit">
+      <Button type="submit" fullWidth>
         Add Member
-      </button>
+      </Button>
     </form>
   );
 };

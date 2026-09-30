@@ -1,20 +1,36 @@
+@use "../../styles/variables" as *;
+
 .page {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: $spacing-6;
+}
 
-  .header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
 
-    .title {
-      font-size: 1.8rem;
-      color: #0f172a;
-    }
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+}
 
-    .subtitle {
-      color: #64748b;
-    }
+.subtitle {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .page {
+    gap: $spacing-5;
+  }
+
+  .title {
+    font-size: $font-size-xl;
   }
 }

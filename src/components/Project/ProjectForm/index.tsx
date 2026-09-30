@@ -8,6 +8,9 @@ import type { Project } from "../../../types/project";
 import { v4 as uuid } from "uuid";
 import { projectAction } from "../../../redux/slices/projectSlice";
 import { useEffect, useState } from "react";
+import Input from "../../Common/Input";
+import Textarea from "../../Common/Textarea";
+import Button from "../../Common/Button";
 
 interface ProjectFormData {
   title: string;
@@ -121,25 +124,27 @@ const ProjectForm = ({ initialData, projectId }: ProjectFormProps) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.field}>
-        <label htmlFor="title">Title</label>
-        <input type="text" id="title" {...register("title")} />
-        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
-      </div>
+      <Input
+        label="Title"
+        type="text"
+        id="title"
+        {...register("title")}
+        error={errors.title?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="description">Description</label>
-        <textarea rows={4} id="description" {...register("description")} />
-        {errors.description && (
-          <p className={styles.error}>{errors.description.message}</p>
-        )}
-      </div>
+      <Textarea
+        label="Description"
+        id="description"
+        rows={4}
+        {...register("description")}
+        error={errors.description?.message}
+      />
 
       {errors.root && <p className={styles.formError}>{errors.root.message}</p>}
 
-      <button className={styles.button} type="submit">
-        {editingMode === true ? "Save Change" : "Create Project"}
-      </button>
+      <Button type="submit" fullWidth>
+        {editingMode ? "Save Changes" : "Create Project"}
+      </Button>
     </form>
   );
 };

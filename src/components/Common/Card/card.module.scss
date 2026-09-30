@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as *;
+
+.card {
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.none {
+  padding: 0;
+}
+
+.sm {
+  padding: $spacing-3;
+}
+
+.md {
+  padding: $spacing-4;
+}
+
+.lg {
+  padding: $spacing-6;
+}

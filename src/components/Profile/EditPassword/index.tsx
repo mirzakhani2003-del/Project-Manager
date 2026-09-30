@@ -7,6 +7,8 @@ import { useAppSelector } from "../../../redux/hooks";
 import type { User } from "../../../types/user";
 import { userActions } from "../../../redux/slices/userSlice";
 import { authActions } from "../../../redux/slices/authSlice";
+import Input from "../../Common/Input";
+import Button from "../../Common/Button";
 
 interface ChangePasswordFormData {
   currentPassword: string;
@@ -76,41 +78,33 @@ const EditPassword = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.field}>
-        <label htmlFor="currentPassword">Current Password</label>
-        <input
-          id="currentPassword"
-          type="password"
-          {...register("currentPassword")}
-        />
-        {errors.currentPassword && (
-          <p className={styles.error}>{errors.currentPassword.message}</p>
-        )}
-      </div>
+      <Input
+        label="Current Password"
+        type="password"
+        id="currentPassword"
+        {...register("currentPassword")}
+        error={errors.currentPassword?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="newPassword">New Password</label>
-        <input id="newPassword" type="password" {...register("newPassword")} />
-        {errors.newPassword && (
-          <p className={styles.error}>{errors.newPassword.message}</p>
-        )}
-      </div>
+      <Input
+        label="New Password"
+        type="password"
+        id="newPassword"
+        {...register("newPassword")}
+        error={errors.newPassword?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="confirmPassword">Confirm New Password</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          {...register("confirmPassword")}
-        />
-        {errors.confirmPassword && (
-          <p className={styles.error}>{errors.confirmPassword.message}</p>
-        )}
-      </div>
+      <Input
+        label="Confirm New Password"
+        type="password"
+        id="confirmPassword"
+        {...register("confirmPassword")}
+        error={errors.confirmPassword?.message}
+      />
 
-      <button className={styles.button} type="submit">
+      <Button type="submit" fullWidth>
         Change Password
-      </button>
+      </Button>
     </form>
   );
 };

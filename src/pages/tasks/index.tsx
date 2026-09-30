@@ -104,6 +104,7 @@ const Tasks = () => {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.title}>Tasks</h1>
+
         <p className={styles.subtitle}>See all tasks on your team</p>
       </header>
 

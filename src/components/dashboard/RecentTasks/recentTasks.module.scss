@@ -1,70 +1,100 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .container {
-  padding: 1rem;
+  padding: $spacing-5;
   border: 1px solid $color-border;
-  border-radius: 0.7rem;
+  border-radius: $radius-lg;
   background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
 
-  .title {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+.title {
+  margin: 0 0 $spacing-5;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.empty {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-4;
+  padding: $spacing-4 0;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.taskTitle {
+  overflow: hidden;
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.createdAt {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.status {
+  flex-shrink: 0;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-normal;
+}
+
+.todo {
+  color: $color-danger;
+  background-color: $color-danger-light;
+}
+
+.in-progress {
+  color: $color-warning;
+  background-color: $color-warning-light;
+}
+
+.done {
+  color: $color-success;
+  background-color: $color-success-light;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    padding: $spacing-4;
   }
 
-  .empty {
-    color: $color-text-secondary;
+  .item {
+    align-items: flex-start;
   }
 
-  .list {
-    display: flex;
-    flex-direction: column;
-
-    .item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid $color-border;
-
-      .info {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        .taskTitle {
-          font-size: 0.95rem;
-        }
-
-        .createdAt {
-          font-size: 0.8rem;
-          color: $color-text-secondary;
-        }
-      }
-
-      .status {
-        flex-shrink: 0;
-        padding: 0.4rem 0.6rem;
-        border-radius: 0.7rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-      }
-    }
-
-    .item:last-child {
-      border-bottom: none;
-    }
-
-    .todo {
-      background-color: $color-danger;
-    }
-
-    .in-progress {
-      background-color: $color-warning;
-    }
-
-    .done {
-      background-color: $color-success;
-    }
+  .taskTitle {
+    white-space: normal;
   }
 }

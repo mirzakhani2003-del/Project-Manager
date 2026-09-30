@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { authActions } from "../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import Card from "../../components/Common/Card";
+import Input from "../../components/Common/Input";
+import Button from "../../components/Common/Button";
 
 interface LoginFormData {
   email: string;
@@ -64,42 +67,42 @@ const Login = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.card}>
+      <Card className={styles.card}>
         <div className={styles.header}>
           <h1>Welcome Back</h1>
           <p>Login to your account</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.field}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" {...register("email")} />
-            {errors.email && (
-              <p className={styles.error}>{errors.email.message}</p>
-            )}
-          </div>
+          <Input
+            label="Email"
+            type="email"
+            id="email"
+            {...register("email")}
+            error={errors.email?.message}
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" {...register("password")} />
-            {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
-            )}
-          </div>
+          <Input
+            label="Password"
+            type="password"
+            id="password"
+            {...register("password")}
+            error={errors.password?.message}
+          />
 
           {errors.root && (
             <p className={styles.formError}>{errors.root.message}</p>
           )}
 
-          <button className={styles.submitButton} type="submit">
+          <Button type="submit" fullWidth>
             Login
-          </button>
+          </Button>
         </form>
 
         <p className={styles.footer}>
           Don’t have an account? <Link to="/register">Register</Link>
         </p>
-      </div>
+      </Card>
     </div>
   );
 };

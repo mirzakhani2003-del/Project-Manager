@@ -1,82 +1,96 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .header {
-  height: 64px;
-  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 64px;
+  gap: $spacing-4;
+  padding: $spacing-3 $spacing-6;
   border-bottom: 1px solid $color-border;
+  background-color: $color-surface;
+}
 
+.leftSection {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: $spacing-3;
+}
+
+.menuButton {
+  display: none;
+  flex-shrink: 0;
+}
+
+.heading {
+  min-width: 0;
+}
+
+.heading h1 {
+  overflow: hidden;
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.heading p {
+  overflow: hidden;
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: $spacing-3;
+}
+
+.notificationButton {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0 $spacing-1;
+  font-size: $font-size-xs;
+  line-height: $line-height-tight;
+}
+
+@media (max-width: $breakpoint-lg) {
   .menuButton {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.7rem;
-    border: none;
-    color: $color-button;
-    background-color: $color-surface;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .notificationButton {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 1.2rem;
-
-    .notificationBadge {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      max-width: 18px;
-      padding: 0 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background-color: $color-danger;
-      color: $color-text-white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      line-height: 1;
-    }
-  }
-
-  .logoutButton {
     display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1rem;
-    border-radius: 0.7rem;
-    border: none;
-    text-decoration: none;
-    background-color: $color-button;
-    color: $color-text-white;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .logoutButton:hover {
-    background-color: $color-button-hover;
   }
 }
 
-@media (max-width: 900px) {
-  .header .menuButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (max-width: $breakpoint-sm) {
+  .header {
+    min-height: 60px;
+    padding: $spacing-3 $spacing-4;
+  }
+
+  .heading p {
+    display: none;
+  }
+
+  .actions {
+    gap: $spacing-2;
+  }
+
+  .actions > :last-child span {
+    display: none;
   }
 }

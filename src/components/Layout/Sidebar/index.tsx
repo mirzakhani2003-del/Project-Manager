@@ -16,11 +16,11 @@ interface SidebarProps {
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   return (
     <aside className={`${styles.sideBar} ${isOpen ? styles.open : ""}`}>
-      <Link to="/" className={styles.logo}>
+      <Link to="/" className={styles.logo} onClick={onClose}>
         <h2>Task Manager</h2>
       </Link>
 
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Main navigation">
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>

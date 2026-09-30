@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import type { User } from "../../../types/user";
 import { userActions } from "../../../redux/slices/userSlice";
 import { authActions } from "../../../redux/slices/authSlice";
+import Input from "../../Common/Input";
+import Button from "../../Common/Button";
 
 interface EditProfileFormData {
   name: string;
@@ -40,7 +42,7 @@ const EditProfile = () => {
       email: currentUser?.email ?? "",
     },
   });
- 
+
   if (!currentUser) {
     return;
   }
@@ -83,21 +85,25 @@ const EditProfile = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.field}>
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" {...register("name")} />
-        {errors.name && <p className={styles.error}>{errors.name.message}</p>}
-      </div>
+      <Input
+        label="Name"
+        type="text"
+        id="name"
+        {...register("name")}
+        error={errors.name?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" {...register("email")} />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
-      </div>
+      <Input
+        label="Email"
+        type="email"
+        id="email"
+        {...register("email")}
+        error={errors.email?.message}
+      />
 
-      <button className={styles.button} type="submit">
+      <Button type="submit" fullWidth>
         Save Changes
-      </button>
+      </Button>
     </form>
   );
 };

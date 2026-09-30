@@ -15,15 +15,26 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   };
 
   return (
-    <li className={styles.card} onClick={handleClick}>
+    <article
+      className={styles.card}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+    >
       <div className={styles.content}>
-        <h3 className={styles.title}>{project.title}</h3>
+        <div className={styles.header}>
+          <h3 className={styles.title}>{project.title}</h3>
+        </div>
+
         <p className={styles.description}>{project.description}</p>
-        <p className={styles.date}>
-          Created on {format(new Date(project.createdAt), "MMM d, yyyy")}
-        </p>
+
+        <div className={styles.footer}>
+          <span className={styles.date}>
+            Created on {format(new Date(project.createdAt), "MMM d, yyyy")}
+          </span>
+        </div>
       </div>
-    </li>
+    </article>
   );
 };
 

@@ -1,0 +1,82 @@
+@use "../../../styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-index-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-4;
+  background-color: $color-overlay;
+}
+
+.modal {
+  width: 100%;
+  max-height: calc(100vh - #{$spacing-8});
+  overflow: hidden;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-xl;
+}
+
+.sm {
+  max-width: 400px;
+}
+
+.md {
+  max-width: 560px;
+}
+
+.lg {
+  max-width: 800px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4 $spacing-6;
+  border-bottom: 1px solid $color-border;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: $radius-md;
+  color: $color-text-secondary;
+  background-color: transparent;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  transition:
+    background-color $transition-normal,
+    color $transition-normal;
+
+  &:hover {
+    color: $color-text;
+    background-color: $color-surface-muted;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    box-shadow: 0 0 0 3px $color-primary-light;
+  }
+}
+
+.content {
+  max-height: calc(100vh - 180px);
+  padding: $spacing-6;
+  overflow-y: auto;
+}

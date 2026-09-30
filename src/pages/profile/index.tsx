@@ -4,7 +4,10 @@ import EditPassword from "../../components/Profile/EditPassword";
 import { useAppSelector } from "../../redux/hooks";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useState } from "react";
-import Modal from "../../components/Modal";
+import Badge from "../../components/Common/Badge";
+import Card from "../../components/Common/Card";
+import Button from "../../components/Common/Button";
+import Modal from "../../components/Common/Modal";
 
 const Profile = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
@@ -19,46 +22,122 @@ const Profile = () => {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1 className={styles.title}>My Profile</h1>
+        <div>
+          <h1 className={styles.title}>My Profile</h1>
 
-        <p className={styles.subtitle}>
-          See and Manage your personal information.
-        </p>
+          <p className={styles.subtitle}>
+            View and manage your personal account information.
+          </p>
+        </div>
       </header>
 
-      <div className={styles.container}>
-        <div className={styles.hero}>
-          <FaRegUserCircle />
-        </div>
+      <section className={styles.profileCard}>
+        <div className={styles.profileHero}>
+          <div className={styles.avatar}>
+            <FaRegUserCircle />
+          </div>
 
-        <div className={styles.content}>
-          <h2 className={styles.name}>{currentUser.name}</h2>
+          <div className={styles.profileInfo}>
+            <h2 className={styles.name}>{currentUser.name}</h2>
 
-          <p className={styles.email}>{currentUser.email}</p>
-          <p className={styles.role}>{currentUser.role}</p>
+            <p className={styles.email}>{currentUser.email}</p>
+
+            <Badge
+              variant={currentUser.role === "manager" ? "primary" : "neutral"}
+            >
+              {currentUser.role}
+            </Badge>
+          </div>
         </div>
+      </section>
+
+      <div className={styles.grid}>
+        <Card className={styles.infoCard}>
+          <div className={styles.cardHeader}>
+            <div>
+              <h2 className={styles.cardTitle}>Account Information</h2>
+
+              <p className={styles.cardDescription}>
+                Your basic account information.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.details}>
+            <div className={styles.detail}>
+              <span className={styles.label}>Full Name</span>
+
+              <span className={styles.value}>{currentUser.name}</span>
+            </div>
+
+            <div className={styles.detail}>
+              <span className={styles.label}>Email Address</span>
+
+              <span className={styles.value}>{currentUser.email}</span>
+            </div>
+
+            <div className={styles.detail}>
+              <span className={styles.label}>Role</span>
+
+              <span className={styles.value}>{currentUser.role}</span>
+            </div>
+          </div>
+
+          <div className={styles.actions}>
+            <Button
+              variant="secondary"
+              onClick={() => setChangeInfoModal(true)}
+            >
+              Change Information
+            </Button>
+          </div>
+        </Card>
+
+        <Card className={styles.securityCard}>
+          <div className={styles.cardHeader}>
+            <div>
+              <h2 className={styles.cardTitle}>Security</h2>
+
+              <p className={styles.cardDescription}>
+                Manage your account password and security.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.securityContent}>
+            <div>
+              <h3 className={styles.securityTitle}>Password</h3>
+
+              <p className={styles.securityDescription}>
+                Keep your account secure by using a strong password.
+              </p>
+            </div>
+
+            <Button
+              variant="secondary"
+              onClick={() => setChangePassModal(true)}
+            >
+              Change Password
+            </Button>
+          </div>
+        </Card>
       </div>
 
-      <div className={styles.action}>
-        <button onClick={() => setChangeInfoModal(true)}>
-          Change Information
-        </button>
-        <button onClick={() => setChangePassModal(true)}>
-          Change Password
-        </button>
-      </div>
+      <Modal
+        isOpen={changeInfoModal}
+        onClose={() => setChangeInfoModal(false)}
+        title="Change Information"
+      >
+        <EditProfile />
+      </Modal>
 
-      {changeInfoModal && (
-        <Modal onClose={() => setChangeInfoModal(false)}>
-          <EditProfile />
-        </Modal>
-      )}
-
-      {changePassModal && (
-        <Modal onClose={() => setChangePassModal(false)}>
-          <EditPassword />
-        </Modal>
-      )}
+      <Modal
+        isOpen={changePassModal}
+        onClose={() => setChangePassModal(false)}
+        title="Change Password"
+      >
+        <EditPassword />
+      </Modal>
     </div>
   );
 };

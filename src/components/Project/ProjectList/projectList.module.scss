@@ -1,15 +1,19 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $spacing-4;
 }
 
-.empty {
-  padding: 2rem 1rem;
-  color: $color-text-secondary;
-  background: $color-surface;
-  border-radius: 0.7rem;
+@media (max-width: $breakpoint-xl) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .list {
+    grid-template-columns: 1fr;
+  }
 }

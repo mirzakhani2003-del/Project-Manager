@@ -1,101 +1,128 @@
-@use "../../styles/variables.scss" as *;
+@use "../../styles/variables" as *;
 
 .page {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $spacing-6;
+}
 
-  .backLink {
-    width: fit-content;
-    color: $color-text-secondary;
-    text-decoration: none;
-  }
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  width: fit-content;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: color $transition-fast;
 
-  .backLink:hover {
+  &:hover {
     color: $color-primary;
   }
 
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: $radius-sm;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-6;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.date {
+  margin-top: $spacing-2;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: $spacing-2;
+}
+
+.section,
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding: $spacing-6;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.description {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.tasksHeader {
+  padding-bottom: $spacing-4;
+  border-bottom: 1px solid $color-border;
+}
+
+.tasksDescription {
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+@media (max-width: $breakpoint-md) {
   .header {
-    display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-
-    .title {
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-
-    .date {
-      font-size: 0.8rem;
-      color: $color-text-secondary;
-    }
+    gap: $spacing-4;
   }
 
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
   .section,
   .tasks {
-    padding: 1.5rem;
-    border: 1px solid $color-border;
-    border-radius: 0.7rem;
-    background-color: $color-surface;
-
-    .sectionTitle {
-      margin-bottom: 0.7rem;
-      font-size: 1rem;
-      color: $color-text;
-    }
-
-    .description {
-      line-height: 1.7;
-      color: $color-text-secondary;
-    }
+    padding: $spacing-4;
   }
 
-  .action {
-    display: flex;
-    gap: 0.5rem;
+  .title {
+    font-size: $font-size-xl;
+  }
 
-    .edit,
-    .delete,
-    .addTask {
-      padding: 0.4rem 0.6rem;
-      border-radius: 0.7rem;
-      cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
-    }
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
-    .edit {
-      border: 1px solid $color-warning;
-      background-color: $color-warning-background;
-      color: $color-warning;
-    }
-
-    .edit:hover {
-      background-color: $color-warning-background-hover;
-      transform: translateY(1px);
-    }
-
-    .delete {
-      border: 1px solid $color-danger;
-      background-color: $color-danger-bachground;
-      color: $color-danger;
-    }
-
-    .delete:hover {
-      background-color: $color-danger-bachground-hover;
-      transform: translateY(1px);
-    }
-
-    .addTask {
-      border: 1px solid $color-success;
-      background-color: $color-success-background;
-      color: $color-success;
-    }
-
-    .addTask:hover {
-      background-color: $color-success-background-hover;
-      transform: translateY(1px);
-    }
+  .actions > button {
+    width: 100%;
   }
 }

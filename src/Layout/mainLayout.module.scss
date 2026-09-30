@@ -1,36 +1,43 @@
-@use "../styles/variables.scss" as *;
+@use "../styles/variables" as *;
 
 .layout {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  background-color: $color-background;
+}
 
+.overlay {
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: $spacing-6;
+}
+
+@media (max-width: $breakpoint-lg) {
   .overlay {
-    display: none;
-  }
-
-  .main {
-    display: flex;
-    flex: 1;
-    min-width: 0;
-    flex-direction: column;
-    overflow: hidden;
-
-    .content {
-      flex: 1;
-      min-height: 0;
-      overflow-y: auto;
-      padding: 1.5rem;
-    }
+    position: fixed;
+    inset: 0;
+    z-index: $z-index-sidebar - 1;
+    display: block;
+    background-color: $color-overlay;
   }
 }
 
-@media (max-width: 900px) {
-  .layout .overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: $color-overlay;
+@media (max-width: $breakpoint-sm) {
+  .content {
+    padding: $spacing-4;
   }
 }

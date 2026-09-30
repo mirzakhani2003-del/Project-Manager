@@ -1,62 +1,60 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: $spacing-4;
+  padding: $spacing-4;
   border: 1px solid $color-border;
-  border-radius: 0.7rem;
+  border-radius: $radius-lg;
   background-color: $color-surface;
+  transition:
+    border-color $transition-normal,
+    box-shadow $transition-normal;
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-
-    .name {
-      font-weight: 600;
-    }
-
-    .email {
-      color: $color-text-secondary;
-      font-size: 0.8rem;
-    }
-  }
-
-  .action {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    .role {
-      padding: 0.4rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: capitalize;
-      background-color: $color-background-black;
-      color: $color-text-white;
-    }
-
-    .deleteButton {
-      padding: 0.4rem 0.6rem;
-      border: 1px solid $color-danger;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: $color-danger;
-      background: $color-danger-bachground;
-      transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .deleteButton:hover {
-      background: $color-danger-bachground-hover;
-    }
+  &:hover {
+    border-color: $color-border-dark;
+    box-shadow: $shadow-sm;
   }
 }
 
+.info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.name {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  overflow-wrap: anywhere;
+}
+
+.email {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  overflow-wrap: anywhere;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: $spacing-2;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .card {
+    align-items: flex-start;
+  }
+
+  .action {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

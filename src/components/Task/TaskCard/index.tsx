@@ -4,8 +4,11 @@ import type { Status, Task } from "../../../types/task";
 import styles from "./taskCard.module.scss";
 import { taskAction } from "../../../redux/slices/taskSlice";
 import { useState } from "react";
-import Modal from "../../Modal";
 import TaskForm from "../TaskForm";
+import Badge from "../../Common/Badge";
+import Select from "../../Common/Select";
+import Button from "../../Common/Button";
+import Modal from "../../Common/Modal";
 
 interface TaskCardProps {
   task: Task;
@@ -44,8 +47,23 @@ const TaskCard = ({
   return (
     <article className={styles.card}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{task.title}</h3>
-        <span>{task.priority}</span>
+        <div className={styles.titleSection}>
+          <h3 className={styles.title}>{task.title}</h3>
+
+          <p className={styles.project}>{project}</p>
+        </div>
+
+        <Badge
+          variant={
+            task.priority === "high"
+              ? "danger"
+              : task.priority === "medium"
+                ? "warning"
+                : "success"
+          }
+        >
+          {task.priority}
+        </Badge>
       </div>
 
       <p className={styles.description}>{task.description}</p>
@@ -53,11 +71,13 @@ const TaskCard = ({
       <div className={styles.details}>
         <div className={styles.detail}>
           <span className={styles.label}>Assigned To</span>
+
           <span className={styles.value}>{assignedUser ?? "Unknown user"}</span>
         </div>
 
         <div className={styles.detail}>
           <span className={styles.label}>Due Date</span>
+
           <span className={styles.value}>
             {format(new Date(task.dueDate), "MMM d, yyyy")}
           </span>
@@ -67,19 +87,37 @@ const TaskCard = ({
           <span className={styles.label}>Status</span>
 
           {task.assignedTo === currentUser.id ? (
-            <select
-              id="status"
+            <Select
+              aria-label="Task status"
               value={task.status}
+              options={[
+                { value: "todo", label: "Todo" },
+                {
+                  value: "in-progress",
+                  label: "In Progress",
+                },
+                { value: "done", label: "Done" },
+              ]}
               onChange={(event) =>
                 handleStatusChange(task, event.target.value as Status)
               }
-            >
-              <option value="todo">Todo</option>
-              <option value="in-progress">In-progress</option>
-              <option value="done">Done</option>
-            </select>
+            />
           ) : (
-            <p className={styles.value}>Status: {task.status}</p>
+            <Badge
+              variant={
+                task.status === "done"
+                  ? "success"
+                  : task.status === "in-progress"
+                    ? "primary"
+                    : "neutral"
+              }
+            >
+              {task.status === "in-progress"
+                ? "In Progress"
+                : task.status === "todo"
+                  ? "Todo"
+                  : "Done"}
+            </Badge>
           )}
         </div>
 
@@ -94,23 +132,27 @@ const TaskCard = ({
 
       {currentUser.role === "manager" && (
         <div className={styles.action}>
-          <button
-            className={styles.edit}
+          <Button
+            variant="secondary"
+            size="sm"
             onClick={() => setTaskFormModal(true)}
           >
             Edit
-          </button>
-          <button className={styles.delete} onClick={handleDelete}>
+          </Button>
+
+          <Button variant="danger" size="sm" onClick={handleDelete}>
             Delete
-          </button>
+          </Button>
         </div>
       )}
 
-      {taskFormModal && (
-        <Modal onClose={() => setTaskFormModal(false)}>
-          <TaskForm projectId={project} initialData={task} taskId={task.id} />
-        </Modal>
-      )}
+      <Modal
+        isOpen={taskFormModal}
+        onClose={() => setTaskFormModal(false)}
+        title="Edit Task"
+      >
+        <TaskForm projectId={project} initialData={task} taskId={task.id} />
+      </Modal>
     </article>
   );
 };

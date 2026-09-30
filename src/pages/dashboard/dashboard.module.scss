@@ -1,18 +1,88 @@
-.container {
-  width: 100%;
+@use "../../styles/variables" as *;
+
+.page {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: $spacing-6;
+}
 
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-4;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+}
+
+.subtitle {
+  margin-top: $spacing-2;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.summary {
+  width: 100%;
+}
+
+.chartsSection,
+.tasksSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+  padding: $spacing-6;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.sectionHeader {
+  padding-bottom: $spacing-4;
+  border-bottom: 1px solid $color-border;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.sectionDescription {
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-5;
+}
+
+@media (max-width: $breakpoint-lg) {
   .charts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 900px) {
-  .container .charts {
-    grid-template-columns: 1fr;
+@media (max-width: $breakpoint-sm) {
+  .page {
+    gap: $spacing-5;
+  }
+
+  .chartsSection,
+  .tasksSection {
+    padding: $spacing-4;
+  }
+
+  .sectionTitle {
+    font-size: $font-size-md;
   }
 }

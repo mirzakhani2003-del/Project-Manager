@@ -1,5 +1,6 @@
 import { useAppSelector } from "../../../redux/hooks";
 import type { Status, Task } from "../../../types/task";
+import EmptyState from "../../Common/EmptyState";
 import TaskCard from "../TaskCard";
 import styles from "./taskList.module.scss";
 
@@ -35,21 +36,26 @@ const TaskList = ({ projectId, tasks, handleStatusChange }: TaskListProprs) => {
   return (
     <div className={styles.list}>
       {taskToShow.length === 0 ? (
-        <p>No task found</p>
+        <EmptyState
+          title="No tasks found"
+          description="There are no tasks to display here yet."
+        />
       ) : (
         taskToShow.map((task) => {
           const assignedUser = teamUsers.find(
             (user) => user.id === task.assignedTo,
           );
+
           const project = teamProjects.find(
             (project) => project.id === task.projectId,
           );
 
           return (
             <TaskCard
+              key={task.id}
               task={task}
               assignedUser={assignedUser?.name ?? "Unknown User"}
-              project={project?.title ?? "Unknow Project"}
+              project={project?.title ?? "Unknown Project"}
               handleStatusChange={handleStatusChange}
             />
           );

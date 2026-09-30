@@ -1,115 +1,195 @@
-@use "../../styles/variables.scss" as *;
+@use "../../styles/variables" as *;
 
 .container {
   width: 100%;
+}
 
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin: 1rem 0;
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  margin-bottom: $spacing-5;
+  flex-wrap: wrap;
+}
 
-    .count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 1.5rem;
-      height: 1.5rem;
-      padding: 0 0.4rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background-color: $color-background;
-    }
+.header h2 {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+}
 
-    .markAllButton {
-      margin-left: auto;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.8rem;
-      color: $color-primary;
-    }
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 $spacing-2;
+  border-radius: $radius-full;
+  color: $color-text-secondary;
+  background-color: $color-surface-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+}
+
+.markAllButton {
+  margin-left: auto;
+  padding: $spacing-2 $spacing-3;
+  border: 0;
+  border-radius: $radius-md;
+  color: $color-primary;
+  background-color: transparent;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition:
+    color $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    color: $color-primary-hover;
+    background-color: $color-primary-light;
   }
 
-  .empty {
-    padding: 3rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 1px solid $color-border;
-    border-radius: 0.7rem;
-
-    .emptyIcon {
-      margin-bottom: 0.75rem;
-      font-size: 2rem;
-      color: $color-text-secondary;
-    }
-
-    .empty p {
-      margin: 0;
-      color: $color-text-secondary;
-    }
-  }
-
-  .list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-
-    .notification {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 1rem;
-      border: 1px solid $color-border;
-      border-radius: 0.7rem;
-      background-color: $color-surface;
-      cursor: pointer;
-
-      .content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        .date {
-          font-size: 0.8rem;
-          color: $color-text-secondary;
-        }
-      }
-
-      .delete {
-        padding: 0.4rem 0.6rem;
-        border-radius: 0.7rem;
-        cursor: pointer;
-        transition:
-          transform 0.2s ease,
-          background-color 0.2s ease;
-        border: 1px solid $color-danger;
-        background-color: $color-danger-bachground;
-        color: $color-danger;
-      }
-
-      .delete:hover {
-        background-color: $color-danger-bachground-hover;
-        transform: translateY(1px);
-      }
-    }
-
-    .unread {
-      border-left: 4px solid $color-primary;
-      background-color: $color-surface;
-    }
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
   }
 }
 
-@media (max-width: 768px) {
-  .header {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: $spacing-8 $spacing-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+.emptyIcon {
+  margin-bottom: $spacing-3;
+  color: $color-text-muted;
+  font-size: $font-size-3xl;
+}
+
+.empty p {
+  margin: 0;
+  font-size: $font-size-sm;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-4;
+  padding: $spacing-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+  transition:
+    border-color $transition-normal,
+    box-shadow $transition-normal,
+    transform $transition-normal;
+
+  &:hover {
+    border-color: $color-border-dark;
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+.notificationButton {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 4px;
+    border-radius: $radius-sm;
+  }
+}
+
+.content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.type {
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.message {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  overflow-wrap: anywhere;
+}
+
+.date {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.delete {
+  flex-shrink: 0;
+  padding: $spacing-2 $spacing-3;
+  border: 1px solid $color-danger;
+  border-radius: $radius-md;
+  color: $color-danger;
+  background-color: $color-danger-light;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    color: $color-text-inverse;
+    background-color: $color-danger;
+    transform: translateY(-1px);
   }
 
+  &:focus-visible {
+    outline: 2px solid $color-danger;
+    outline-offset: 2px;
+  }
+}
+
+.unread {
+  border-left: 4px solid $color-primary;
+  background-color: $color-primary-light;
+
+  &:hover {
+    border-left-color: $color-primary-hover;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
   .markAllButton {
     width: 100%;
     margin-left: 0;
@@ -117,27 +197,12 @@
   }
 
   .notification {
-    padding: 0.875rem;
+    flex-direction: column;
+    align-items: stretch;
   }
-}
 
-.sectionHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.sectionHeader h2 {
-  margin: 0;
-}
-
-.reminderIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  font-size: 1.25rem;
+  .delete {
+    align-self: flex-start;
+    padding: $spacing-2 $spacing-3;
+  }
 }

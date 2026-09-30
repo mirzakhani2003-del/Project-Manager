@@ -1,63 +1,41 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  margin-bottom: 1rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: $spacing-4;
+  padding: $spacing-5;
   border: 1px solid $color-border;
+  border-radius: $radius-lg;
   background-color: $color-surface;
-  border-radius: 0.7rem;
-  padding: 1rem;
+  box-shadow: $shadow-sm;
+}
 
-  .field:first-child {
-    grid-column: span 5;
+.container > :first-child {
+  grid-column: 1 / -1;
+}
+
+.container > button {
+  align-self: end;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: $spacing-4;
   }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: $color-text-secondary;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 0.8rem 0.9rem;
-      border: 1px solid $color-border;
-      border-radius: 0.7rem;
-      color: $color-text;
-      background-color: color-surface;
-      outline: none;
-      transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: $color-border-black;
-      box-shadow: $color-input-focus-shadow;
-    }
+  .container > :first-child {
+    grid-column: auto;
   }
 
-  .button {
-    padding: 0.7rem;
-    border: none;
-    border-radius: 0.7rem;
-    background-color: $color-button;
-    color: $color-text-white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .button:hover {
-    background-color: $color-button-hover;
+  .container > button {
+    width: 100%;
   }
 }

@@ -1,15 +1,10 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: $spacing-3;
+  margin: 0;
+  padding: 0;
   list-style: none;
-}
-
-.empty {
-  padding: 2rem 1rem;
-  color: $color-text-secondary;
-  background: $color-surface;
-  border-radius: 0.7rem;
 }

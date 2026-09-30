@@ -8,6 +8,10 @@ import type { User } from "../../../types/user";
 import { v4 as uuid } from "uuid";
 import { taskAction } from "../../../redux/slices/taskSlice";
 import { useEffect, useState } from "react";
+import Input from "../../Common/Input";
+import Textarea from "../../Common/Textarea";
+import Select from "../../Common/Select";
+import Button from "../../Common/Button";
 
 interface TaskFormData {
   title: string;
@@ -148,81 +152,84 @@ const TaskForm = ({ projectId, initialData, taskId }: TaskFormProps) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.field}>
-        <label htmlFor="title">Title</label>
-        <input type="text" id="title" {...register("title")} />
-        {errors.title && <p className={styles.error}>{errors.title.message}</p>}
-      </div>
+      <Input
+        label="Title"
+        type="text"
+        id="title"
+        {...register("title")}
+        error={errors.title?.message}
+      />
 
-      <div className={styles.field}>
-        <label htmlFor="description">Desctiption</label>
-        <textarea id="description" {...register("description")} />
-        {errors.description && (
-          <p className={styles.error}>{errors.description.message}</p>
-        )}
-      </div>
+      <Textarea
+        label="Description"
+        id="description"
+        rows={4}
+        {...register("description")}
+        error={errors.description?.message}
+      />
 
       <div className={styles.section}>
-        <div className={styles.field}>
-          <label htmlFor="priority">Priority</label>
-          <select id="priority" defaultValue="medium" {...register("priority")}>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          {errors.priority && (
-            <p className={styles.error}>{errors.priority.message}</p>
-          )}
-        </div>
+        <Select
+          label="Priority"
+          id="priority"
+          defaultValue="medium"
+          options={[
+            { value: "low", label: "Low" },
+            { value: "medium", label: "Medium" },
+            { value: "high", label: "High" },
+          ]}
+          {...register("priority")}
+          error={errors.priority?.message}
+        />
 
-        <div className={styles.field}>
-          <label htmlFor="dueDate">Due Date</label>
-          <input type="date" id="dueDate" {...register("dueDate")} />
-          {errors.dueDate && (
-            <p className={styles.error}>{errors.dueDate.message}</p>
-          )}
-        </div>
+        <Input
+          label="Due Date"
+          type="date"
+          id="dueDate"
+          {...register("dueDate")}
+          error={errors.dueDate?.message}
+        />
 
-        <div className={styles.field}>
-          <label htmlFor="assignedTo">Assigned To</label>
-          <select id="assignedTo" defaultValue="" {...register("assignedTo")}>
-            <option value="" disabled>
-              Select a team member
-            </option>
-            {teamUsers.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </select>
+        <Select
+          label="Assigned To"
+          id="assignedTo"
+          defaultValue=""
+          options={[
+            {
+              value: "",
+              label: "Select a team member",
+            },
+            ...teamUsers.map((user) => ({
+              value: user.id,
+              label: user.name,
+            })),
+          ]}
+          {...register("assignedTo")}
+          error={errors.assignedTo?.message}
+        />
 
-          {errors.assignedTo && (
-            <p className={styles.error}>{errors.assignedTo.message}</p>
-          )}
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor="status">Status</label>
-          <select
-            id="status"
-            {...register("status")}
-            disabled={editingMode ? false : true}
-          >
-            <option value="todo">Todo</option>
-            <option value="in-progress">In-progress</option>
-            <option value="done">Done</option>
-          </select>
-          {errors.status && (
-            <p className={styles.error}>{errors.status.message}</p>
-          )}
-        </div>
+        <Select
+          label="Status"
+          id="status"
+          options={[
+            { value: "todo", label: "Todo" },
+            {
+              value: "in-progress",
+              label: "In Progress",
+            },
+            { value: "done", label: "Done" },
+          ]}
+          disabled={!editingMode}
+          {...register("status")}
+          error={errors.status?.message}
+        />
       </div>
 
-      {errors.root && <p className={styles.error}>{errors.root.message}</p>}
+      {errors.root && <p className={styles.formError}>{errors.root.message}</p>}
 
-      <button type="submit" className={styles.button}>
+      <Button type="submit" fullWidth>
         {editingMode ? "Save Changes" : "Create Task"}
-      </button>
+      </Button>
     </form>
   );
 };

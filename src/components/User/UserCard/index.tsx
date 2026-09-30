@@ -2,6 +2,9 @@ import type { User } from "../../../types/user";
 import styles from "./userCard.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { userActions } from "../../../redux/slices/userSlice";
+import Badge from "../../Common/Badge";
+import IconButton from "../../Common/IconButton";
+import { FiTrash2 } from "react-icons/fi";
 
 interface UserCardProps {
   user: User;
@@ -45,20 +48,26 @@ const UserCard = ({ user }: UserCardProps) => {
     <li className={styles.card}>
       <div className={styles.info}>
         <p className={styles.name}>{user.name}</p>
+
         <p className={styles.email}>{user.email}</p>
       </div>
 
       <div className={styles.action}>
-        <span className={styles.role}>{user.role}</span>
+        <Badge variant={user.role === "manager" ? "primary" : "neutral"}>
+          {user.role}
+        </Badge>
 
         {currentUser.role === "manager" && user.role === "member" && (
-          <button
-            className={styles.deleteButton}
+          <IconButton
+            variant="danger"
+            size="sm"
             type="button"
             onClick={handleDelete}
+            aria-label={`Delete ${user.name}`}
+            title={`Delete ${user.name}`}
           >
-            Delete
-          </button>
+            <FiTrash2 />
+          </IconButton>
         )}
       </div>
     </li>

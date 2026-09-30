@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../../redux/hooks";
+import EmptyState from "../../Common/EmptyState";
 import ProjectCard from "../ProjectCard";
 import styles from "./projectList.module.scss";
 
@@ -15,15 +16,18 @@ const ProjectList = () => {
   );
 
   return (
-    <ul className={styles.list}>
+    <div className={styles.list}>
       {teamProjects.length === 0 ? (
-        <li className={styles.empty}>No project found</li>
+        <EmptyState
+          title="No projects found"
+          description="There are no projects in your team yet."
+        />
       ) : (
         teamProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))
       )}
-    </ul>
+    </div>
   );
 };
 

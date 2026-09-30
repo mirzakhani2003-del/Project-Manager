@@ -195,48 +195,88 @@ const Dashboard = () => {
       );
 
   return (
-    <div className={styles.container}>
-      <h1>Dashboard</h1>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <div>
+          <h1 className={styles.title}>Dashboard</h1>
 
-      <SummaryCard
-        totalTasks={dashboardData.totalTasks}
-        completedTasks={dashboardData.completedTasks}
-        isManager={isManager}
-        teamMembers={dashboardData.teamMembers}
-        totalProjects={dashboardData.totalProjects}
-      />
+          <p className={styles.subtitle}>
+            {isManager
+              ? "Overview of your team's projects and tasks."
+              : "Overview of your assigned tasks and activity."}
+          </p>
+        </div>
+      </header>
 
-      <div className={styles.charts}>
-        <TaskStatusChart
-          todo={dashboardData.todoTasks}
-          inProgress={dashboardData.inProgressTasks}
-          completed={dashboardData.completedTasks}
+      <section className={styles.summary}>
+        <SummaryCard
+          totalTasks={dashboardData.totalTasks}
+          completedTasks={dashboardData.completedTasks}
           isManager={isManager}
+          teamMembers={dashboardData.teamMembers}
+          totalProjects={dashboardData.totalProjects}
         />
+      </section>
 
-        <TaskPriorityChart
-          isManager={isManager}
-          low={dashboardData.lowPriorityTasks}
-          medium={dashboardData.mediumPriorityTasks}
-          high={dashboardData.highPriorityTasks}
+      <section className={styles.chartsSection}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>Task Analytics</h2>
+
+            <p className={styles.sectionDescription}>
+              Overview of task status and priority.
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.charts}>
+          <TaskStatusChart
+            todo={dashboardData.todoTasks}
+            inProgress={dashboardData.inProgressTasks}
+            completed={dashboardData.completedTasks}
+            isManager={isManager}
+          />
+
+          <TaskPriorityChart
+            isManager={isManager}
+            low={dashboardData.lowPriorityTasks}
+            medium={dashboardData.mediumPriorityTasks}
+            high={dashboardData.highPriorityTasks}
+          />
+        </div>
+      </section>
+
+      <section className={styles.tasksSection}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>Recent Tasks</h2>
+
+            <p className={styles.sectionDescription}>
+              Recently created tasks in your workspace.
+            </p>
+          </div>
+        </div>
+
+        <RecentTasks isManager={isManager} tasks={dashboardData.recentTasks} />
+      </section>
+
+      <section className={styles.tasksSection}>
+        <TaskDeadLineList
+          title={isManager ? "Upcoming Tasks" : "Your Upcoming Tasks"}
+          tasks={dashboardData.upcomingTasks}
+          emptyMessage="No upcoming tasks."
+          type="upcoming"
         />
-      </div>
+      </section>
 
-      <RecentTasks tasks={dashboardData.recentTasks} />
-
-      <TaskDeadLineList
-        title={isManager ? "Upcoming Tasks" : "Your Upcoming Tasks"}
-        tasks={dashboardData.upcomingTasks}
-        emptyMessage="No upcoming tasks."
-        type="upcoming"
-      />
-
-      <TaskDeadLineList
-        title={isManager ? "Overdue Tasks" : "Your Overdue Tasks"}
-        tasks={dashboardData.overdueTasks}
-        emptyMessage="No overdue tasks."
-        type="overdue"
-      />
+      <section className={styles.tasksSection}>
+        <TaskDeadLineList
+          title={isManager ? "Overdue Tasks" : "Your Overdue Tasks"}
+          tasks={dashboardData.overdueTasks}
+          emptyMessage="No overdue tasks."
+          type="overdue"
+        />
+      </section>
     </div>
   );
 };

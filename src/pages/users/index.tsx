@@ -3,7 +3,8 @@ import AddMemberFrom from "../../components/User/AddMemberForm";
 import UserList from "../../components/User/UserList";
 import { useAppSelector } from "../../redux/hooks";
 import styles from "./users.module.scss";
-import Modal from "../../components/Modal";
+import Button from "../../components/Common/Button";
+import Modal from "../../components/Common/Modal";
 
 const Users = () => {
   const currentUser = useAppSelector((state) => state.auth.currentUser);
@@ -17,29 +18,40 @@ const Users = () => {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Team Members</h1>
-        <p className={styles.subtitle}>
-          Manage and view the members of your team.
-        </p>
+        <div>
+          <h1 className={styles.title}>Team Members</h1>
+
+          <p className={styles.subtitle}>
+            Manage and view the members of your team.
+          </p>
+        </div>
+
+        {currentUser.role === "manager" && (
+          <Button onClick={() => setOpenModal(true)}>Add Member</Button>
+        )}
       </header>
 
-      <div className={styles.content}>
-        {currentUser.role === "manager" && (
-          <section className={styles.formSection}>
-            <button className={styles.addMember} onClick={() => setOpenModal(true)}>Add Member</button>
-            {openModal && (
-              <Modal onClose={() => setOpenModal(false)}>
-                <AddMemberFrom />
-              </Modal>
-            )}
-          </section>
-        )}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>Team Members</h2>
 
-        <section className={styles.listSection}>
-          <h2 className={styles.sectionTitle}>Team Members</h2>
-          <UserList />
-        </section>
-      </div>
+            <p className={styles.sectionDescription}>
+              View and manage the members of your team.
+            </p>
+          </div>
+        </div>
+
+        <UserList />
+      </section>
+
+      <Modal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        title="Add Team Member"
+      >
+        <AddMemberFrom />
+      </Modal>
     </div>
   );
 };

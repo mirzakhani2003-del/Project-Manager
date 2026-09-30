@@ -68,20 +68,29 @@ const NotificationCenter = () => {
               className={`${styles.notification} ${
                 !item.isRead ? styles.unread : ""
               }`}
-              onClick={() => handleNotificationClick(item.id)}
             >
-              <div className={styles.content}>
-                <h4>{item.type}</h4>
-                <p>{item.message}</p>
-                <span className={styles.date}>
-                  {new Date(item.createdAt).toLocaleString()}
-                </span>
-              </div>
               <button
+                type="button"
+                className={styles.notificationButton}
+                onClick={() => handleNotificationClick(item.id)}
+              >
+                <span className={styles.content}>
+                  <span className={styles.type}>{item.type}</span>
+
+                  <span className={styles.message}>{item.message}</span>
+
+                  <span className={styles.date}>
+                    {new Date(item.createdAt).toLocaleString()}
+                  </span>
+                </span>
+              </button>
+
+              <button
+                type="button"
                 className={styles.delete}
                 onClick={() => handleDeleteNotification(item.id)}
               >
-                Delete Notification
+                X
               </button>
             </article>
           ))}

@@ -1,5 +1,8 @@
 import type { Priority, Status } from "../../../types/task";
 import type { User } from "../../../types/user";
+import Button from "../../Common/Button";
+import Input from "../../Common/Input";
+import Select from "../../Common/Select";
 import styles from "./filterTask.module.scss";
 
 interface FilterTaskState {
@@ -24,94 +27,90 @@ const FilterTask = ({ filters, users, onClear, onChange }: FilterTaskProps) => {
   };
 
   return (
-    <section className={styles.container}>
-      <div className={styles.field}>
-        <label htmlFor="search">Search Task</label>
-        <input
-          type="text"
-          id="search"
-          placeholder="Search by task title"
-          onChange={(event) => handleChange("search", event.target.value)}
-        />
-      </div>
+  <section className={styles.container}>
+    <Input
+      label="Search Task"
+      id="search"
+      type="text"
+      placeholder="Search by task title"
+      onChange={(event) =>
+        handleChange("search", event.target.value)
+      }
+    />
 
-      <div className={styles.field}>
-        <label htmlFor="status">Status</label>
-        <select
-          className={styles.select}
-          id="task-status"
-          onChange={(event) => handleChange("status", event.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="todo">Todo</option>
-          <option value="in-progress">In Progress</option>
-          <option value="done">Done</option>
-        </select>
-      </div>
+    <Select
+      label="Status"
+      id="task-status"
+      options={[
+        { value: "all", label: "All" },
+        { value: "todo", label: "Todo" },
+        {
+          value: "in-progress",
+          label: "In Progress",
+        },
+        { value: "done", label: "Done" },
+      ]}
+      onChange={(event) =>
+        handleChange("status", event.target.value)
+      }
+    />
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="task-priority">
-          Priority
-        </label>
-        <select
-          className={styles.select}
-          id="task-priority"
-          onChange={(event) => handleChange("priority", event.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
+    <Select
+      label="Priority"
+      id="task-priority"
+      options={[
+        { value: "all", label: "All" },
+        { value: "low", label: "Low" },
+        { value: "medium", label: "Medium" },
+        { value: "high", label: "High" },
+      ]}
+      onChange={(event) =>
+        handleChange("priority", event.target.value)
+      }
+    />
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="task-assignee">
-          Assigned To
-        </label>
-        <select
-          className={styles.select}
-          id="task-assignee"
-          onChange={(event) => handleChange("assignedTo", event.target.value)}
-        >
-          <option value="all">All Members</option>
-          {users.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-      </div>
+    <Select
+      label="Assigned To"
+      id="task-assignee"
+      options={[
+        { value: "all", label: "All Members" },
+        ...users.map((user) => ({
+          value: user.id,
+          label: user.name,
+        })),
+      ]}
+      onChange={(event) =>
+        handleChange("assignedTo", event.target.value)
+      }
+    />
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="task-due-from">
-          Due Date From
-        </label>
-        <input
-          className={styles.input}
-          id="task-due-from"
-          type="date"
-          onChange={(event) => handleChange("dueDateFrom", event.target.value)}
-        />
-      </div>
+    <Input
+      label="Due Date From"
+      id="task-due-from"
+      type="date"
+      onChange={(event) =>
+        handleChange("dueDateFrom", event.target.value)
+      }
+    />
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="task-due-to">
-          Due Date To
-        </label>
-        <input
-          className={styles.input}
-          id="task-due-to"
-          type="date"
-          onChange={(event) => handleChange("dueDateTo", event.target.value)}
-        />
-      </div>
+    <Input
+      label="Due Date To"
+      id="task-due-to"
+      type="date"
+      onChange={(event) =>
+        handleChange("dueDateTo", event.target.value)
+      }
+    />
 
-      <button className={styles.button} type="button" onClick={onClear}>
-        Clear Filters
-      </button>
-    </section>
-  );
+    <Button
+      type="button"
+      variant="secondary"
+      onClick={onClear}
+    >
+      Clear Filters
+    </Button>
+  </section>
+);
 };
 
 export default FilterTask;

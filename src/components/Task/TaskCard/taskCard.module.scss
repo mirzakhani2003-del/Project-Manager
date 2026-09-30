@@ -1,106 +1,126 @@
-@use "../../../styles/variables.scss" as *;
+@use "../../../styles/variables" as *;
 
 .card {
-  padding: 1rem;
+  padding: $spacing-5;
   border: 1px solid $color-border;
-  border-radius: 0.7rem;
+  border-radius: $radius-lg;
   background-color: $color-surface;
+  box-shadow: $shadow-sm;
+  transition:
+    border-color $transition-normal,
+    box-shadow $transition-normal;
 
-  .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+  &:hover {
+    border-color: $color-border-dark;
+    box-shadow: $shadow-md;
+  }
+}
 
-    .title {
-      font-size: 1.1rem;
-      color: $color-text;
-    }
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-width: 0;
+  gap: $spacing-4;
+}
 
-    span {
-      padding: 0.3rem 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      border-radius: 999px;
-      text-transform: capitalize;
-    }
+.titleSection {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: $color-text;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.project {
+  margin-top: $spacing-1;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  margin-top: $spacing-4;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  overflow-wrap: anywhere;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $spacing-4;
+  margin-top: $spacing-5;
+  padding-top: $spacing-4;
+  border-top: 1px solid $color-border;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  min-width: 0;
+}
+
+.label {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.value {
+  color: $color-text;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  overflow-wrap: anywhere;
+}
+
+.detail select {
+  width: 100%;
+  min-width: 0;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  margin-top: $spacing-5;
+  padding-top: $spacing-4;
+  border-top: 1px solid $color-border;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .card {
+    padding: $spacing-4;
   }
 
-  .description {
-    color: $color-text-secondary;
-    margin-bottom: 1rem;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    padding-top: 1rem;
-
-    .detail {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      .label {
-        font-size: 0.8rem;
-        color: $color-text-secondary;
-      }
-
-      .value {
-        font-size: 0.8rem;
-        color: $color-text;
-        font-weight: 600;
-      }
-
-      select {
-        padding: 0.4rem 0.6rem;
-        border: 1px solid $color-border;
-        border-radius: 0.7rem;
-        background: $color-surface;
-        color: $color-text-secondary;
-        font-size: 0.8rem;
-        cursor: pointer;
-      }
-    }
+    grid-template-columns: 1fr;
   }
 
   .action {
-    display: flex;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .edit,
-    .delete {
-      padding: 0.4rem 0.6rem;
-      border-radius: 0.7rem;
-      cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        background-color 0.2s ease;
-    }
-
-    .edit {
-      border: 1px solid $color-warning;
-      background-color: $color-warning-background;
-      color: $color-warning;
-    }
-
-    .delete {
-      border: 1px solid $color-danger;
-      background-color: $color-danger-bachground;
-      color: $color-danger;
-    }
-
-    .edit:hover {
-      background-color: $color-warning-background-hover;
-      transform: translateY(1px);
-    }
-
-    .delete:hover {
-      background-color: $color-danger-bachground-hover;
-      transform: translateY(1px);
-    }
+  .action > button {
+    width: 100%;
   }
 }

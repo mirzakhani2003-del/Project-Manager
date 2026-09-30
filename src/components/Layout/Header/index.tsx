@@ -3,6 +3,9 @@ import { FiBell, FiLogOut, FiMenu } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { authActions } from "../../../redux/slices/authSlice";
+import IconButton from "../../Common/IconButton";
+import Badge from "../../Common/Badge";
+import Button from "../../Common/Button";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -39,42 +42,44 @@ const Header = ({ onMenuClick }: HeaderProps) => {
 
   return (
     <header className={styles.header}>
-      <button
-        type="button"
-        className={styles.menuButton}
-        onClick={onMenuClick}
-        aria-label="Toggle navigation menu"
-      >
-        <FiMenu />
-      </button>
-      <div>
-        <h1>Task Manager</h1>
-        <p>Welcome, {currentUser.name}</p>
+      <div className={styles.leftSection}>
+        <IconButton
+          className={styles.menuButton}
+          variant="ghost"
+          aria-label="Toggle navigation menu"
+          onClick={onMenuClick}
+        >
+          <FiMenu />
+        </IconButton>
+
+        <div className={styles.heading}>
+          <h1>Task Manager</h1>
+          <p>Welcome, {currentUser.name}</p>
+        </div>
       </div>
 
       <div className={styles.actions}>
-        <button
+        <IconButton
+          variant="ghost"
+          aria-label="Notifications"
           className={styles.notificationButton}
-          type="button"
           onClick={() => navigate("/notifications")}
         >
           <FiBell />
+
           {unreadNotifications.length > 0 && (
-            <span className={styles.notificationBadge}>
+            <Badge variant="danger" className={styles.notificationBadge}>
               {unreadNotifications.length > 99
                 ? "99+"
                 : unreadNotifications.length}
-            </span>
+            </Badge>
           )}
-        </button>
-        <button
-          className={styles.logoutButton}
-          type="button"
-          onClick={handleLogout}
-        >
+        </IconButton>
+
+        <Button variant="secondary" size="sm" onClick={handleLogout}>
           <FiLogOut />
           <span>Logout</span>
-        </button>
+        </Button>
       </div>
     </header>
   );

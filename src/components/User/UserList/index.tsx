@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../../redux/hooks";
+import EmptyState from "../../Common/EmptyState";
 import UserCard from "../UserCard";
 import styles from "./userList.module.scss";
 
@@ -15,7 +16,10 @@ const UserList = () => {
   return (
     <>
       {teamUser.length === 0 ? (
-        <p className={styles.empty}>No team member found.</p>
+        <EmptyState
+          title="No team members found"
+          description="There are no members in your team yet."
+        />
       ) : (
         <ul className={styles.list}>
           {teamUser.map((user) => (

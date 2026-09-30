@@ -10,6 +10,9 @@ import type { Team } from "../../types/team";
 import { teamsActions } from "../../redux/slices/teamSlice";
 import { authActions } from "../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import Card from "../../components/Common/Card";
+import Input from "../../components/Common/Input";
+import Button from "../../components/Common/Button";
 
 interface RegisterFormData {
   name: string;
@@ -53,8 +56,7 @@ const Register = () => {
 
   const RegisterUser = (data: RegisterFormData) => {
     const existingUser = users?.find(
-      (user) =>
-        user.email.toLowerCase() === data.email.toLowerCase(),
+      (user) => user.email.toLowerCase() === data.email.toLowerCase(),
     );
 
     if (existingUser) {
@@ -104,58 +106,54 @@ const Register = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.card}>
+      <Card className={styles.card}>
         <div className={styles.header}>
           <h1>Create Account</h1>
           <p>Create your team workspace</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.field}>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" {...register("name")} />
-            {errors.name && (
-              <p className={styles.error}>{errors.name.message}</p>
-            )}
-          </div>
+          <Input
+            label="Name"
+            type="text"
+            id="name"
+            {...register("name")}
+            error={errors.name?.message}
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" {...register("email")} />
-            {errors.email && (
-              <p className={styles.error}>{errors.email.message}</p>
-            )}
-          </div>
+          <Input
+            label="Email"
+            type="email"
+            id="email"
+            {...register("email")}
+            error={errors.email?.message}
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" {...register("password")} />
-            {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
-            )}
-          </div>
+          <Input
+            label="Password"
+            type="password"
+            id="password"
+            {...register("password")}
+            error={errors.password?.message}
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              {...register("confirmPassword")}
-            />
-            {errors.confirmPassword && (
-              <p className={styles.error}>{errors.confirmPassword.message}</p>
-            )}
-          </div>
+          <Input
+            label="Confirm Password"
+            type="password"
+            id="confirmPassword"
+            {...register("confirmPassword")}
+            error={errors.confirmPassword?.message}
+          />
 
-          <button className={styles.submitButton} type="submit">
+          <Button type="submit" fullWidth>
             Register
-          </button>
+          </Button>
         </form>
 
         <p className={styles.footer}>
           Already have an account? <Link to="/login">Login</Link>
         </p>
-      </div>
+      </Card>
     </div>
   );
 };
