@@ -44,15 +44,8 @@ const Tasks = () => {
     (project) => project.teamId === currentUser.teamId,
   );
 
-  const teamTasks: Task[] = [];
-
-  for (let i = 0; i < teamProjects.length; i++) {
-    for (let j = 0; j < tasks.length; j++) {
-      if (teamProjects[i].id === tasks[j].projectId) {
-        teamTasks.push(tasks[j]);
-      }
-    }
-  }
+  const projectIds = new Set(teamProjects.map((project) => project.id));
+  const teamTasks = tasks.filter((task) => projectIds.has(task.projectId));
 
   const handleStatusChange = (task: Task, status: Status) => {
     const updatedTask: Task = {
