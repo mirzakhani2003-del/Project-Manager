@@ -1,11 +1,12 @@
 import styles from "./header.module.scss";
-import { FiBell, FiLogOut, FiMenu } from "react-icons/fi";
+import { FiBell, FiLogOut, FiMenu, FiMoon, FiSun } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { authActions } from "../../../redux/slices/authSlice";
 import IconButton from "../../Common/IconButton";
 import Badge from "../../Common/Badge";
 import Button from "../../Common/Button";
+import { useTheme } from "../../../features/theme/ThemeProvider";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -14,6 +15,7 @@ interface HeaderProps {
 const Header = ({ onMenuClick }: HeaderProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { theme, toggleTheme } = useTheme();
 
   const notifications = useAppSelector(
     (state) => state.notifications.notifications,
@@ -59,6 +61,15 @@ const Header = ({ onMenuClick }: HeaderProps) => {
       </div>
 
       <div className={styles.actions}>
+        <IconButton
+          aria-label={
+            theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+          }
+          onClick={toggleTheme}
+        >
+          {theme === "light" ? <FiMoon /> : <FiSun />}
+        </IconButton>
+        
         <IconButton
           variant="ghost"
           aria-label="Notifications"

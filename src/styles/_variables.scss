@@ -1,35 +1,44 @@
-// color primary
-$color-primary: #2563eb;
-$color-primary-hover: #1d4ed8;
-$color-primary-light: #eff6ff;
+// Primary
+$color-primary: var(--color-primary);
+$color-primary-hover: var(--color-primary-hover);
+$color-primary-light: var(--color-primary-light);
 
-// color text
-$color-text: #111827;
-$color-text-secondary: #4b5563;
-$color-text-muted: #6b7280;
-$color-text-inverse: #ffffff;
+// Text
+$color-text: var(--color-text);
+$color-text-secondary: var(--color-text-secondary);
+$color-text-muted: var(--color-text-muted);
+$color-text-inverse: var(--color-text-inverse);
 
-// color background
-$color-background: #f8fafc;
-$color-surface: #ffffff;
-$color-surface-muted: #f1f5f9;
+// Background
+$color-background: var(--color-background);
+$color-surface: var(--color-surface);
+$color-surface-muted: var(--color-surface-muted);
 
-// color border
-$color-border: #e2e8f0;
-$color-border-dark: #cbd5e1;
+// Border
+$color-border: var(--color-border);
+$color-border-dark: var(--color-border-dark);
 
-// color semantic
-$color-success: #16a34a;
-$color-success-light: #f0fdf4;
-$color-warning: #d97706;
-$color-warning-light: #fffbeb;
-$color-danger: #dc2626;
-$color-danger-light: #fef2f2;
-$color-info: #0284c7;
-$color-info-light: #f0f9ff;
+// Semantic
+$color-success: var(--color-success);
+$color-success-light: var(--color-success-light);
 
-// color overlay
-$color-overlay: rgb(15 23 42 / 0.5);
+$color-warning: var(--color-warning);
+$color-warning-light: var(--color-warning-light);
+
+$color-danger: var(--color-danger);
+$color-danger-light: var(--color-danger-light);
+
+$color-info: var(--color-info);
+$color-info-light: var(--color-info-light);
+
+// Overlay
+$color-overlay: var(--color-overlay);
+
+// Shadows
+$shadow-sm: var(--shadow-sm);
+$shadow-md: var(--shadow-md);
+$shadow-lg: var(--shadow-lg);
+$shadow-xl: var(--shadow-xl);
 
 // fonts
 $font-family-base:
@@ -77,12 +86,6 @@ $radius-md: 0.5rem;
 $radius-lg: 0.75rem;
 $radius-xl: 1rem;
 $radius-full: 9999px;
-
-// shadow
-$shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
-$shadow-md: 0 4px 12px rgb(15 23 42 / 0.08);
-$shadow-lg: 0 12px 32px rgb(15 23 42 / 0.12);
-$shadow-xl: 0 20px 40px rgb(15 23 42 / 0.15);
 
 // breakpoints
 $breakpoint-sm: 640px;
